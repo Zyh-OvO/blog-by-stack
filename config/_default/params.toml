@@ -3,8 +3,10 @@ mainSections = ["post"]
 # Output page's full content in RSS.
 rssFullContent = true
 
+favicon = "favicon.ico"
+
 [footer]
-since = 2020
+since = 2023
 customText = ""
 
 [dateFormat]
@@ -13,7 +15,7 @@ lastUpdated = "Jan 02, 2006 15:04 MST"
 
 [sidebar]
 emoji = "🍥"
-subtitle = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+subtitle = "Being silent is the perfect way to show contempt."
 
 [sidebar.avatar]
 enabled = true
@@ -21,11 +23,11 @@ local = true
 src = "img/avatar.jpg"
 
 [article]
-math = false
+math = true
 readingTime = true
 
 [article.license]
-enabled = true
+enabled = false
 default = "Licensed under CC BY-NC-SA 4.0"
 
 ## Widgets
