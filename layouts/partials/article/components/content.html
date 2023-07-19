@@ -1,0 +1,10 @@
+<section class="article-content">
+    {{ if .Site.Params.busuanzi.enable }}
+    <span id="busuanzi_container_page_pv" style="color: rgb(60, 106, 255)">Total Views: <span
+            id="busuanzi_value_page_pv"></span></span>
+    {{ end }}
+
+    <!-- Refer to https://discourse.gohugo.io/t/responsive-tables-in-markdown/10639/5 -->
+    {{ $wrappedTable := printf "<div class=\"table-wrapper\">${1}</div>" }}
+    {{ .Content | replaceRE "(<table>(?:.|\n)+?</table>)" $wrappedTable | safeHTML }}
+</section>
