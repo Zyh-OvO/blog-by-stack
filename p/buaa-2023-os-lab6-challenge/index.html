@@ -1,0 +1,1435 @@
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="我的2023OS课程的lab6挑战性任务的实验报告"><title>BUAA 2023 OS Lab6 Challenge</title><link rel=canonical href=https://zyh-ovo.github.io/blog-by-stack/p/buaa-2023-os-lab6-challenge/><link rel=stylesheet href=/blog-by-stack/scss/style.min.ff300df33b80e2ac49809c825614392ed1c7b27591d65d3c4043602cd162e25f.css><meta property="og:title" content="BUAA 2023 OS Lab6 Challenge"><meta property="og:description" content="我的2023OS课程的lab6挑战性任务的实验报告"><meta property="og:url" content="https://zyh-ovo.github.io/blog-by-stack/p/buaa-2023-os-lab6-challenge/"><meta property="og:site_name" content="Zyh's Blog"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:published_time" content="2023-07-19T17:42:39+08:00"><meta property="article:modified_time" content="2023-07-19T17:42:39+08:00"><meta property="og:image" content="https://zyh-ovo.github.io/blog-by-stack/p/buaa-2023-os-lab6-challenge/mos.jpg"><meta name=twitter:title content="BUAA 2023 OS Lab6 Challenge"><meta name=twitter:description content="我的2023OS课程的lab6挑战性任务的实验报告"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://zyh-ovo.github.io/blog-by-stack/p/buaa-2023-os-lab6-challenge/mos.jpg"><link rel="shortcut icon" href=favicon.ico><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><meta name=referrer content="no-referrer-when-downgrade"></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/blog-by-stack><img src=/blog-by-stack/img/avatar_huac652424026402f63fd9adc4543df4f9_147914_300x0_resize_q75_box.jpg width=300 height=300 class=site-logo loading=lazy alt=Avatar></a>
+<span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/blog-by-stack>Zyh's Blog</a></h1><h2 class=site-description>Being silent is the perfect way to show contempt.</h2></div></header><ol class=social-menu><li><a href=https://github.com/Zyh-OvO target=_blank title=GitHub rel=me><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/blog-by-stack/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg><span>Home</span></a></li><li><a href=/blog-by-stack/archives/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg><span>Archives</span></a></li><li><a href=/blog-by-stack/search/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg><span>Search</span></a></li><li><a href=/blog-by-stack/links/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg><span>Links</span></a></li><div class=menu-bottom-section><li id=dark-mode-toggle><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><span>Dark Mode</span></li></div></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#实现思路>实现思路</a><ol><li><a href=#添加命令>添加命令</a></li><li><a href=#一行多命令>一行多命令</a></li><li><a href=#后台任务>后台任务</a></li><li><a href=#引号支持>引号支持</a></li><li><a href=#键入命令时任意位置的修改>键入命令时任意位置的修改</a></li><li><a href=#程序名称中-b-的省略>程序名称中 <code>.b</code> 的省略</a></li><li><a href=#tree命令>tree命令</a></li><li><a href=#mkdir命令touch命令>mkdir命令&amp;touch命令</a></li><li><a href=#历史命令功能>历史命令功能</a></li><li><a href=#shell环境变量>shell环境变量</a><ol><li><a href=#实现declare命令>实现declare命令</a></li><li><a href=#实现unset命令>实现unset命令</a></li></ol></li></ol></li><li><a href=#功能测试>功能测试</a><ol><li><a href=#一行多命令-1>一行多命令</a></li><li><a href=#后台任务-1>后台任务</a></li><li><a href=#引号支持-1>引号支持</a></li><li><a href=#键入命令时任意位置的修改-1>键入命令时任意位置的修改</a></li><li><a href=#程序名称b的省略>程序名称<code>.b</code>的省略</a></li><li><a href=#treemkdirtouch命令>tree,mkdir,touch命令</a></li><li><a href=#历史命令功能-1>历史命令功能</a></li><li><a href=#shell环境变量-1>shell环境变量</a></li></ol></li><li><a href=#困难和解决方案>困难和解决方案</a><ol><li><a href=#命令运行出现的异步问题>命令运行出现的异步问题</a></li><li><a href=#内核态阻塞的问题>内核态阻塞的问题</a></li><li><a href=#方向键的监听>方向键的监听</a></li><li><a href=#解析形如-abc的参数的方法>解析形如<code>-abc</code>的参数的方法</a></li><li><a href=#文件打开模式o_append的实现>文件打开模式<code>O_APPEND</code>的实现</a></li><li><a href=#历史命令的保存>历史命令的保存</a></li></ol></li></ol></nav></div></section></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/blog-by-stack/p/buaa-2023-os-lab6-challenge/><img src=/blog-by-stack/p/buaa-2023-os-lab6-challenge/mos_hu8555b497dd7481f472251d8ac0e75d4d_36648_800x0_resize_q75_box.jpg srcset="/blog-by-stack/p/buaa-2023-os-lab6-challenge/mos_hu8555b497dd7481f472251d8ac0e75d4d_36648_800x0_resize_q75_box.jpg 800w, /blog-by-stack/p/buaa-2023-os-lab6-challenge/mos_hu8555b497dd7481f472251d8ac0e75d4d_36648_1600x0_resize_q75_box.jpg 1600w" width=800 height=157 loading=lazy alt="Featured image of post BUAA 2023 OS Lab6 Challenge"></a></div><div class=article-details><header class=article-category><a href=/blog-by-stack/categories/os/>OS</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/blog-by-stack/p/buaa-2023-os-lab6-challenge/>BUAA 2023 OS Lab6 Challenge</a></h2><h3 class=article-subtitle>我的2023OS课程的lab6挑战性任务的实验报告</h3></div><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>Jul 19, 2023</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>15 minute read</time></div></footer></div></header><section class=article-content><span id=busuanzi_container_page_pv style=color:#3c6aff>Total Views: <span id=busuanzi_value_page_pv></span></span><h1 id=lab6-challenge实验报告>Lab6-Challenge实验报告</h1><h2 id=实现思路>实现思路</h2><h3 id=添加命令>添加命令</h3><ol><li>在<code>user</code>目录下，添加<code>xxx.c</code></li><li>在<code>user\include.mk</code>的<code>USERAPPS</code>中，添加<code>xxx.b</code></li></ol><h3 id=一行多命令>一行多命令</h3><p>在<code>parsecmd</code>函数中的<code>switch-case</code>语句中直接再添加<code>case ';'</code>，直接<code>fork</code>，子进程直接执行<code>；</code>左边的命令，父进程等待子进程运行命令结束后再运行<code>；</code>右边的命令</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=k>case</span> <span class=sc>&#39;;&#39;</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>	<span class=n>fktmp</span> <span class=o>=</span> <span class=nf>fork</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>(</span><span class=n>fktmp</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=nf>wait</span><span class=p>(</span><span class=n>fktmp</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=k>return</span> <span class=nf>parsecmd</span><span class=p>(</span><span class=n>argv</span><span class=p>,</span> <span class=n>rightpipe</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=k>return</span> <span class=n>argc</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=k>break</span><span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=后台任务>后台任务</h3><p>类似于一行多命令的实现，直接在<code>switch-case</code>中添加<code>caes '&'</code>，直接<code>fork</code>，子进程直接执行<code>&</code>左边的命令，与实现一行多命令不一样的是，此时父进程不需要等待子进程执行完毕，直接执行右边的命令即可</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=k>case</span> <span class=sc>&#39;&amp;&#39;</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>	<span class=n>fktmp</span> <span class=o>=</span> <span class=nf>fork</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>(</span><span class=n>fktmp</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=k>return</span> <span class=nf>parsecmd</span><span class=p>(</span><span class=n>argv</span><span class=p>,</span> <span class=n>rightpipe</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=k>return</span> <span class=n>argc</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=k>break</span><span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div><p>需要注意的是，<code>readline</code>中调用<code>read</code>从控制台读入字符，当没有字符输入时，进程将阻塞在内核态，无法进行调度，因此为了实现后台任务，需要改变进程阻塞的位置，使其在用户态阻塞，修改<code>sys_cgetc</code>和<code>cons_read</code>即可</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>int</span> <span class=nf>sys_cgetc</span><span class=p>(</span><span class=kt>void</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=kt>int</span> <span class=n>ch</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=c1>// while ((ch = scancharc()) == 0) {
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=c1>// }
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=n>ch</span> <span class=o>=</span> <span class=nf>scancharc</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=n>ch</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=k>while</span> <span class=p>((</span><span class=n>c</span> <span class=o>=</span> <span class=nf>syscall_cgetc</span><span class=p>())</span> <span class=o>==</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=nf>syscall_yield</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=引号支持>引号支持</h3><p>为了实现引号支持，需要修改token的解析方式，即修改<code>_gettoken</code>函数，在函数中，当遇到左双引号时，解析出双引号内的整个字符串，并返回<code>w</code>，将其视为普通字符串而不解析为命令。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=k>if</span> <span class=p>(</span><span class=o>*</span><span class=n>s</span> <span class=o>==</span> <span class=sc>&#39;\&#34;&#39;</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=o>*</span><span class=n>p1</span> <span class=o>=</span> <span class=o>++</span><span class=n>s</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>		<span class=k>while</span> <span class=p>(</span><span class=o>*</span><span class=n>s</span> <span class=o>&amp;&amp;</span> <span class=o>*</span><span class=n>s</span> <span class=o>!=</span> <span class=sc>&#39;\&#34;&#39;</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=n>s</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>		<span class=o>*</span><span class=n>s</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>		<span class=o>*</span><span class=n>p2</span> <span class=o>=</span> <span class=n>s</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>		<span class=k>return</span> <span class=sc>&#39;w&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=键入命令时任意位置的修改>键入命令时任意位置的修改</h3><p>首先要明确键盘上的方向键也对应一个字符，当按下上下左右任意按键时，代码中的<code>readline</code>函数也能读取到对应字符，四个按键的字符映射如下：</p><ul><li><code>UP: \033[A</code></li><li><code>DOWN: \033[B</code></li><li><code>Left: \033[D</code></li><li><code>Right: \033[C</code></li></ul><p>我们需要修改<code>readline</code>函数，使之能够处理相应按键的触发，代码的主要逻辑是维护当前光标的位置和<code>buf</code>字符串，每次输入普通字符或者输入退格符时，保存光标之后的字符串，依次输出光标前的字符串、输入字符或退格符、光标后的字符串。同时要注意光标左右移动的边界，在此我通过维护<code>buf</code>字符串的长度来实现。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>readline</span><span class=p>(</span><span class=kt>char</span> <span class=o>*</span><span class=n>buf</span><span class=p>,</span> <span class=n>u_int</span> <span class=n>n</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=kt>int</span> <span class=n>r</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=kt>int</span> <span class=n>len</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>	       <span class=c1>// buf长度
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=kt>int</span> <span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>	       <span class=c1>// 光标位置
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=kt>int</span> <span class=n>hisindex</span> <span class=o>=</span> <span class=n>hislen</span><span class=p>;</span> <span class=c1>// 历史命令位置
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=kt>char</span> <span class=n>temp</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=kt>char</span> <span class=n>histmp</span><span class=p>[</span><span class=mi>128</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=k>while</span> <span class=p>(</span><span class=n>i</span> <span class=o>&lt;</span> <span class=n>n</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=k>if</span> <span class=p>((</span><span class=n>r</span> <span class=o>=</span> <span class=nf>read</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>temp</span><span class=p>,</span> <span class=mi>1</span><span class=p>))</span> <span class=o>!=</span> <span class=mi>1</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=k>if</span> <span class=p>(</span><span class=n>r</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>				<span class=nf>debugf</span><span class=p>(</span><span class=s>&#34;read error: %d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>r</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>			<span class=p>}</span>
+</span></span><span class=line><span class=cl>			<span class=nf>exit</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>		<span class=k>if</span> <span class=p>(</span><span class=n>temp</span> <span class=o>==</span> <span class=sc>&#39;\b&#39;</span> <span class=o>||</span> <span class=n>temp</span> <span class=o>==</span> <span class=mh>0x7f</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=k>if</span> <span class=p>(</span><span class=n>i</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>				<span class=k>if</span> <span class=p>(</span><span class=n>i</span> <span class=o>==</span> <span class=n>len</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>					<span class=n>buf</span><span class=p>[</span><span class=o>--</span><span class=n>i</span><span class=p>]</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>					<span class=nf>MOVELEFT</span><span class=p>(</span><span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>					<span class=nf>printf</span><span class=p>(</span><span class=s>&#34; &#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>					<span class=nf>MOVELEFT</span><span class=p>(</span><span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>				<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>					<span class=k>for</span> <span class=p>(</span><span class=kt>int</span> <span class=n>j</span> <span class=o>=</span> <span class=n>i</span> <span class=o>-</span> <span class=mi>1</span><span class=p>;</span> <span class=n>j</span> <span class=o>&lt;</span> <span class=n>len</span> <span class=o>-</span> <span class=mi>1</span><span class=p>;</span> <span class=n>j</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>						<span class=n>buf</span><span class=p>[</span><span class=n>j</span><span class=p>]</span> <span class=o>=</span> <span class=n>buf</span><span class=p>[</span><span class=n>j</span> <span class=o>+</span> <span class=mi>1</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>					<span class=p>}</span>
+</span></span><span class=line><span class=cl>					<span class=n>buf</span><span class=p>[</span><span class=n>len</span> <span class=o>-</span> <span class=mi>1</span><span class=p>]</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>					<span class=nf>MOVELEFT</span><span class=p>(</span><span class=n>i</span><span class=o>--</span><span class=p>);</span> <span class=c1>// 往前挪i个位置到最左
+</span></span></span><span class=line><span class=cl><span class=c1></span>					<span class=nf>printf</span><span class=p>(</span><span class=s>&#34;%s &#34;</span><span class=p>,</span> <span class=n>buf</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>					<span class=nf>MOVELEFT</span><span class=p>(</span><span class=n>len</span> <span class=o>-</span> <span class=n>i</span><span class=p>);</span> <span class=c1>// 复位
+</span></span></span><span class=line><span class=cl><span class=c1></span>				<span class=p>}</span>
+</span></span><span class=line><span class=cl>				<span class=n>len</span> <span class=o>-=</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>			<span class=p>}</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=n>temp</span> <span class=o>==</span> <span class=sc>&#39;\033&#39;</span><span class=p>)</span> <span class=p>{</span> <span class=c1>// 方向键
+</span></span></span><span class=line><span class=cl><span class=c1></span>			<span class=k>switch</span> <span class=p>(</span><span class=nf>getDir</span><span class=p>())</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=k>case</span> <span class=mi>1</span><span class=o>:</span> <span class=c1>// up
+</span></span></span><span class=line><span class=cl><span class=c1></span>				<span class=nf>MOVEDOWN</span><span class=p>(</span><span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>				<span class=k>if</span> <span class=p>(</span><span class=n>hisindex</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>					<span class=n>hisindex</span><span class=o>--</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>					<span class=nf>getHis</span><span class=p>(</span><span class=n>hisindex</span><span class=p>,</span> <span class=n>histmp</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>					<span class=nf>strcpy</span><span class=p>(</span><span class=n>buf</span><span class=p>,</span> <span class=n>histmp</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>					<span class=nf>flushLine</span><span class=p>(</span><span class=n>len</span><span class=p>,</span> <span class=n>i</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>					<span class=nf>printf</span><span class=p>(</span><span class=s>&#34;%s&#34;</span><span class=p>,</span> <span class=n>buf</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>					<span class=n>len</span> <span class=o>=</span> <span class=nf>strlen</span><span class=p>(</span><span class=n>buf</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>					<span class=n>i</span> <span class=o>=</span> <span class=n>len</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>				<span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>				<span class=k>break</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>			<span class=k>case</span> <span class=mi>2</span><span class=o>:</span> <span class=c1>// down
+</span></span></span><span class=line><span class=cl><span class=c1></span>				<span class=k>if</span> <span class=p>(</span><span class=n>hisindex</span> <span class=o>&lt;</span> <span class=n>hislen</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>					<span class=n>hisindex</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>					<span class=nf>getHis</span><span class=p>(</span><span class=n>hisindex</span><span class=p>,</span> <span class=n>histmp</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>					<span class=nf>strcpy</span><span class=p>(</span><span class=n>buf</span><span class=p>,</span> <span class=n>histmp</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>					<span class=nf>flushLine</span><span class=p>(</span><span class=n>len</span><span class=p>,</span> <span class=n>i</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>					<span class=nf>printf</span><span class=p>(</span><span class=s>&#34;%s&#34;</span><span class=p>,</span> <span class=n>buf</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>					<span class=n>len</span> <span class=o>=</span> <span class=nf>strlen</span><span class=p>(</span><span class=n>buf</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>					<span class=n>i</span> <span class=o>=</span> <span class=n>len</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>				<span class=p>}</span>
+</span></span><span class=line><span class=cl>				<span class=k>break</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>			<span class=k>case</span> <span class=mi>3</span><span class=o>:</span> <span class=c1>// left
+</span></span></span><span class=line><span class=cl><span class=c1></span>				<span class=k>if</span> <span class=p>(</span><span class=n>i</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>					<span class=n>i</span> <span class=o>-=</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>				<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>					<span class=nf>MOVERIGHT</span><span class=p>(</span><span class=mi>1</span><span class=p>);</span> <span class=c1>// 抵消
+</span></span></span><span class=line><span class=cl><span class=c1></span>				<span class=p>}</span>
+</span></span><span class=line><span class=cl>				<span class=k>break</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>			<span class=k>case</span> <span class=mi>4</span><span class=o>:</span> <span class=c1>// right
+</span></span></span><span class=line><span class=cl><span class=c1></span>				<span class=k>if</span> <span class=p>(</span><span class=n>i</span> <span class=o>&lt;</span> <span class=n>len</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>					<span class=n>i</span> <span class=o>+=</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>				<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>					<span class=nf>MOVELEFT</span><span class=p>(</span><span class=mi>1</span><span class=p>);</span> <span class=c1>// 抵消
+</span></span></span><span class=line><span class=cl><span class=c1></span>				<span class=p>}</span>
+</span></span><span class=line><span class=cl>				<span class=k>break</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>			<span class=k>default</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>				<span class=k>break</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>			<span class=p>}</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=n>temp</span> <span class=o>==</span> <span class=sc>&#39;\r&#39;</span> <span class=o>||</span> <span class=n>temp</span> <span class=o>==</span> <span class=sc>&#39;\n&#39;</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>			<span class=n>buf</span><span class=p>[</span><span class=n>len</span><span class=p>]</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>			<span class=k>return</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span> <span class=k>else</span> <span class=p>{</span> <span class=c1>// 普通字符
+</span></span></span><span class=line><span class=cl><span class=c1></span>			<span class=k>if</span> <span class=p>(</span><span class=n>i</span> <span class=o>==</span> <span class=n>len</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>				<span class=n>buf</span><span class=p>[</span><span class=n>i</span><span class=o>++</span><span class=p>]</span> <span class=o>=</span> <span class=n>temp</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>			<span class=p>}</span> <span class=k>else</span> <span class=p>{</span> <span class=c1>// i &lt; len
+</span></span></span><span class=line><span class=cl><span class=c1></span>				<span class=k>for</span> <span class=p>(</span><span class=kt>int</span> <span class=n>j</span> <span class=o>=</span> <span class=n>len</span><span class=p>;</span> <span class=n>j</span> <span class=o>&gt;</span> <span class=n>i</span><span class=p>;</span> <span class=n>j</span><span class=o>--</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>					<span class=n>buf</span><span class=p>[</span><span class=n>j</span><span class=p>]</span> <span class=o>=</span> <span class=n>buf</span><span class=p>[</span><span class=n>j</span> <span class=o>-</span> <span class=mi>1</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>				<span class=p>}</span>
+</span></span><span class=line><span class=cl>				<span class=n>buf</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>=</span> <span class=n>temp</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>				<span class=n>buf</span><span class=p>[</span><span class=n>len</span> <span class=o>+</span> <span class=mi>1</span><span class=p>]</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>				<span class=nf>MOVELEFT</span><span class=p>(</span><span class=o>++</span><span class=n>i</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>				<span class=nf>printf</span><span class=p>(</span><span class=s>&#34;%s&#34;</span><span class=p>,</span> <span class=n>buf</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>				<span class=nf>MOVELEFT</span><span class=p>(</span><span class=n>len</span> <span class=o>-</span> <span class=n>i</span> <span class=o>+</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>			<span class=p>}</span>
+</span></span><span class=line><span class=cl>			<span class=n>len</span> <span class=o>+=</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>		<span class=k>if</span> <span class=p>(</span><span class=n>len</span> <span class=o>&gt;=</span> <span class=n>n</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=k>break</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=nf>debugf</span><span class=p>(</span><span class=s>&#34;line too long</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=k>while</span> <span class=p>((</span><span class=n>r</span> <span class=o>=</span> <span class=nf>read</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=n>buf</span><span class=p>,</span> <span class=mi>1</span><span class=p>))</span> <span class=o>==</span> <span class=mi>1</span> <span class=o>&amp;&amp;</span> <span class=n>buf</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>!=</span> <span class=sc>&#39;\r&#39;</span> <span class=o>&amp;&amp;</span> <span class=n>buf</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>!=</span> <span class=sc>&#39;\n&#39;</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=n>buf</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=程序名称中-b-的省略>程序名称中 <code>.b</code> 的省略</h3><p>这个功能实现起来比较简单，当输入的程序路径无法打开时，在后面追加<code>.b</code>再次尝试打开即可</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl>	<span class=kt>int</span> <span class=n>fd</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=kt>char</span> <span class=n>progTmp</span><span class=p>[</span><span class=n>MAXPATHLEN</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>	<span class=kt>char</span> <span class=n>after</span><span class=p>[]</span> <span class=o>=</span> <span class=s>&#34;.b&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>((</span><span class=n>fd</span> <span class=o>=</span> <span class=nf>open</span><span class=p>(</span><span class=n>prog</span><span class=p>,</span> <span class=n>O_RDONLY</span><span class=p>))</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=nf>strcpy</span><span class=p>(</span><span class=n>progTmp</span><span class=p>,</span> <span class=n>prog</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=kt>int</span> <span class=n>len</span> <span class=o>=</span> <span class=nf>strlen</span><span class=p>(</span><span class=n>prog</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=nf>strcpy</span><span class=p>(</span><span class=n>progTmp</span> <span class=o>+</span> <span class=n>len</span><span class=p>,</span> <span class=n>after</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=k>if</span> <span class=p>((</span><span class=n>fd</span> <span class=o>=</span> <span class=nf>open</span><span class=p>(</span><span class=n>progTmp</span><span class=p>,</span> <span class=n>O_RDONLY</span><span class=p>))</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=k>return</span> <span class=n>fd</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=tree命令>tree命令</h3><p><code>tree [-adf] [directory...]</code></p><p>当没有directory参数时，将根目录作为参数。</p><p>实现了三种参数形式：</p><ul><li><code>-a</code> 显示所有的文件和目录，默认为 <code>-a</code>；</li><li><code>-d</code> 显示所有的目录；</li><li><code>-f</code> 显示文件和目录的完整路径。</li></ul><p>在命令执行的过程中，也记录了文件和目录的数目，并在末尾输出。</p><p>实现方式也不难，采用深度优先搜索dfs即可</p><ul><li>处理目录的函数</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>treedir</span><span class=p>(</span><span class=kt>char</span> <span class=o>*</span><span class=n>path</span><span class=p>,</span> <span class=kt>char</span> <span class=o>*</span><span class=n>name</span><span class=p>,</span> <span class=kt>int</span> <span class=n>depth</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>处理普通文件的函数</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>treeReg</span><span class=p>(</span><span class=kt>char</span> <span class=o>*</span><span class=n>path</span><span class=p>,</span> <span class=kt>char</span> <span class=o>*</span><span class=n>name</span><span class=p>,</span> <span class=kt>int</span> <span class=n>depth</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><p>其中depth表示目录深度</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=nf>treedir</span><span class=p>(</span><span class=n>path</span><span class=p>,</span> <span class=n>st</span><span class=p>.</span><span class=n>st_name</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span><span class=c1>//从此进入dfs
+</span></span></span></code></pre></td></tr></table></div></div><p>当遍历到一个目录时，进行递归，深度加一</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=k>while</span> <span class=p>((</span><span class=n>n</span> <span class=o>=</span> <span class=nf>readn</span><span class=p>(</span><span class=n>fd</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>f</span><span class=p>,</span> <span class=k>sizeof</span><span class=p>(</span><span class=n>f</span><span class=p>)))</span> <span class=o>==</span> <span class=k>sizeof</span><span class=p>(</span><span class=n>f</span><span class=p>))</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=k>if</span> <span class=p>(</span><span class=n>f</span><span class=p>.</span><span class=n>f_name</span><span class=p>[</span><span class=mi>0</span><span class=p>])</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=k>if</span> <span class=p>(</span><span class=n>f</span><span class=p>.</span><span class=n>f_type</span> <span class=o>==</span> <span class=n>FTYPE_REG</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>				<span class=nf>treeReg</span><span class=p>(</span><span class=n>newpath</span><span class=p>,</span> <span class=n>f</span><span class=p>.</span><span class=n>f_name</span><span class=p>,</span> <span class=n>depth</span> <span class=o>+</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>			<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=n>f</span><span class=p>.</span><span class=n>f_type</span> <span class=o>==</span> <span class=n>FTYPE_DIR</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>				<span class=nf>treedir</span><span class=p>(</span><span class=n>newpath</span><span class=p>,</span> <span class=n>f</span><span class=p>.</span><span class=n>f_name</span><span class=p>,</span> <span class=n>depth</span> <span class=o>+</span> <span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>			<span class=p>}</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=mkdir命令touch命令>mkdir命令&amp;touch命令</h3><p><code>mkdir dirname</code></p><p><code>touch filename</code></p><p>在MOS的文件系统中已经有了创建文件的功能，我们只需要进行一定的封装，通过IPC实现用户进程和文件系统服务进程的交互。在<code>fs/fs.c</code>中已有函数<code>file_create</code>，模仿在<code>file.c</code>中的其他用户接口实现<code>create</code>用户接口</p><ul><li>在<code>user\include\fsreq.h</code>中添加IPC时用到的结构体</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=cp>#define FSREQ_CREATE 8
+</span></span></span><span class=line><span class=cl><span class=cp></span><span class=k>struct</span> <span class=n>Fsreq_create</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=kt>char</span> <span class=n>req_path</span><span class=p>[</span><span class=n>MAXPATHLEN</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>	<span class=kt>int</span> <span class=n>f_type</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>在<code>user\include\lib.h</code>中声明以下函数</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>int</span> <span class=nf>fsipc_create</span><span class=p>(</span><span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=p>,</span> <span class=kt>int</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>create</span><span class=p>(</span><span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>path</span><span class=p>,</span> <span class=kt>int</span> <span class=n>f_type</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>在<code>fs\serv.h</code>中声明以下函数</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>int</span> <span class=nf>file_create</span><span class=p>(</span><span class=kt>char</span> <span class=o>*</span><span class=n>path</span><span class=p>,</span> <span class=k>struct</span> <span class=n>File</span> <span class=o>**</span><span class=n>file</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>实现用户库函数，其中调用<code>fsipc_create</code></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>int</span> <span class=nf>create</span><span class=p>(</span><span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>path</span><span class=p>,</span> <span class=kt>int</span> <span class=n>f_type</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=nf>fsipc_create</span><span class=p>(</span><span class=n>path</span><span class=p>,</span> <span class=n>f_type</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>实现<code>fsipc_create</code>函数，通过IPC让文件系统完成后续文件的创建</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>int</span> <span class=nf>fsipc_create</span><span class=p>(</span><span class=k>const</span> <span class=kt>char</span> <span class=o>*</span><span class=n>path</span><span class=p>,</span> <span class=kt>int</span> <span class=n>f_type</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=kt>int</span> <span class=n>len</span> <span class=o>=</span> <span class=nf>strlen</span><span class=p>(</span><span class=n>path</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>(</span><span class=n>len</span> <span class=o>==</span> <span class=mi>0</span> <span class=o>||</span> <span class=n>len</span> <span class=o>&gt;</span> <span class=n>MAXPATHLEN</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=k>return</span> <span class=o>-</span><span class=n>E_BAD_PATH</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=k>struct</span> <span class=n>Fsreq_create</span> <span class=o>*</span><span class=n>req</span> <span class=o>=</span> <span class=p>(</span><span class=k>struct</span> <span class=n>Fsreq_create</span> <span class=o>*</span><span class=p>)</span><span class=n>fsipcbuf</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=n>req</span><span class=o>-&gt;</span><span class=n>f_type</span> <span class=o>=</span> <span class=n>f_type</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=nf>strcpy</span><span class=p>(</span><span class=n>req</span><span class=o>-&gt;</span><span class=n>req_path</span><span class=p>,</span> <span class=n>path</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=nf>fsipc</span><span class=p>(</span><span class=n>FSREQ_CREATE</span><span class=p>,</span> <span class=n>req</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>实现<code>serve_create</code>函数，并在<code>switch-case</code>中添加相应的<code>case</code></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>serve_create</span><span class=p>(</span><span class=n>u_int</span> <span class=n>envid</span><span class=p>,</span> <span class=k>struct</span> <span class=n>Fsreq_create</span> <span class=o>*</span><span class=n>rq</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=kt>int</span> <span class=n>r</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=k>struct</span> <span class=n>File</span> <span class=o>*</span><span class=n>f</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>((</span><span class=n>r</span> <span class=o>=</span> <span class=nf>file_create</span><span class=p>(</span><span class=n>rq</span><span class=o>-&gt;</span><span class=n>req_path</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>f</span><span class=p>))</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=nf>ipc_send</span><span class=p>(</span><span class=n>envid</span><span class=p>,</span> <span class=n>r</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=k>return</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=n>f</span><span class=o>-&gt;</span><span class=n>f_type</span> <span class=o>=</span> <span class=n>rq</span><span class=o>-&gt;</span><span class=n>f_type</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=nf>ipc_send</span><span class=p>(</span><span class=n>envid</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>case</span> <span class=nl>FSREQ_CREATE</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>	<span class=nf>serve_create</span><span class=p>(</span><span class=n>whom</span><span class=p>,</span> <span class=p>(</span><span class=k>struct</span> <span class=n>Fsreq_create</span> <span class=o>*</span><span class=p>)</span><span class=n>REQVA</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=k>break</span><span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div><p>以上完成之后只需新建<code>mkdir.c</code>、<code>touch.c</code>，在其中调用创建文件的用户接口，传入文件类型即可</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=k>if</span> <span class=p>((</span><span class=n>fd</span> <span class=o>=</span> <span class=nf>create</span><span class=p>(</span><span class=n>argv</span><span class=p>[</span><span class=n>i</span><span class=p>],</span> <span class=n>FTYPE_DIR</span><span class=p>))</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nf>user_panic</span><span class=p>(</span><span class=s>&#34;error create directory %s: %d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>argv</span><span class=p>[</span><span class=n>i</span><span class=p>],</span> <span class=n>fd</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=k>if</span> <span class=p>((</span><span class=n>fd</span> <span class=o>=</span> <span class=nf>create</span><span class=p>(</span><span class=n>argv</span><span class=p>[</span><span class=n>i</span><span class=p>],</span> <span class=n>FTYPE_REG</span><span class=p>))</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nf>user_panic</span><span class=p>(</span><span class=s>&#34;error create file %s: %d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>argv</span><span class=p>[</span><span class=n>i</span><span class=p>],</span> <span class=n>fd</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>修改重定向输出</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=k>case</span> <span class=sc>&#39;&gt;&#39;</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>	<span class=p>...</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>((</span><span class=n>r</span> <span class=o>=</span> <span class=nf>open</span><span class=p>(</span><span class=n>t</span><span class=p>,</span> <span class=n>O_WRONLY</span><span class=p>))</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=k>if</span> <span class=p>(</span><span class=nf>create</span><span class=p>(</span><span class=n>t</span><span class=p>,</span> <span class=n>FTYPE_REG</span><span class=p>)</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=nf>user_panic</span><span class=p>(</span><span class=s>&#34;&gt; open failed&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>		<span class=n>r</span> <span class=o>=</span> <span class=nf>open</span><span class=p>(</span><span class=n>t</span><span class=p>,</span> <span class=n>O_WRONLY</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span> 
+</span></span><span class=line><span class=cl>    <span class=p>...</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=历史命令功能>历史命令功能</h3><ul><li>初始化历史命令记录文件</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>his_init</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=kt>int</span> <span class=n>fd</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>((</span><span class=n>fd</span> <span class=o>=</span> <span class=nf>open</span><span class=p>(</span><span class=s>&#34;/.history&#34;</span><span class=p>,</span> <span class=n>O_RDONLY</span><span class=p>))</span> <span class=o>&gt;=</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=nf>close</span><span class=p>(</span><span class=n>fd</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=k>return</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>(</span><span class=nf>create</span><span class=p>(</span><span class=s>&#34;/.history&#34;</span><span class=p>,</span> <span class=n>FTYPE_REG</span><span class=p>)</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=nf>user_panic</span><span class=p>(</span><span class=s>&#34;create .history failed&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>在每次读取到一行命令后就进行保存</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=nf>readline</span><span class=p>(</span><span class=n>buf</span><span class=p>,</span> <span class=k>sizeof</span> <span class=n>buf</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nf>saveCmd</span><span class=p>(</span><span class=n>buf</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>维护历史命令的条数和每条历史命令在history文件中的偏移</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>int</span> <span class=n>hislen</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=n>his_offsetTb</span><span class=p>[</span><span class=n>MAXHISNUM</span><span class=p>];</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>由于MOS文件系统的文件打开模式不包括append，对history文件的追加写很不方便，因此先实现<code>O_APPEND</code>文件打开模式，在<code>file.c</code>的<code>open</code>函数中添加以下内容，将文件描述符中的偏移设置为文件的大小</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=k>if</span> <span class=p>(</span><span class=n>mode</span> <span class=o>&amp;</span> <span class=n>O_APPEND</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=n>fd</span><span class=o>-&gt;</span><span class=n>fd_offset</span> <span class=o>=</span> <span class=n>ffd</span><span class=o>-&gt;</span><span class=n>f_file</span><span class=p>.</span><span class=n>f_size</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>saveCmd</span><span class=p>(</span><span class=kt>char</span> <span class=o>*</span><span class=n>cmd</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=kt>int</span> <span class=n>fd</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=kt>int</span> <span class=n>r</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>((</span><span class=n>fd</span> <span class=o>=</span> <span class=nf>open</span><span class=p>(</span><span class=s>&#34;/.history&#34;</span><span class=p>,</span> <span class=n>O_WRONLY</span> <span class=o>|</span> <span class=n>O_APPEND</span><span class=p>))</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=nf>user_panic</span><span class=p>(</span><span class=s>&#34;open .history failed&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>((</span><span class=n>r</span> <span class=o>=</span> <span class=nf>write</span><span class=p>(</span><span class=n>fd</span><span class=p>,</span> <span class=n>cmd</span><span class=p>,</span> <span class=nf>strlen</span><span class=p>(</span><span class=n>cmd</span><span class=p>)))</span> <span class=o>!=</span> <span class=nf>strlen</span><span class=p>(</span><span class=n>cmd</span><span class=p>))</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=nf>user_panic</span><span class=p>(</span><span class=s>&#34;write error .history: %d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>r</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>((</span><span class=n>r</span> <span class=o>=</span> <span class=nf>write</span><span class=p>(</span><span class=n>fd</span><span class=p>,</span> <span class=s>&#34;</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=mi>1</span><span class=p>))</span> <span class=o>!=</span> <span class=mi>1</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=nf>user_panic</span><span class=p>(</span><span class=s>&#34;write error .history: %d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>r</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=n>his_offsetTb</span><span class=p>[</span><span class=n>hislen</span><span class=o>++</span><span class=p>]</span> <span class=o>=</span> <span class=nf>strlen</span><span class=p>(</span><span class=n>cmd</span><span class=p>)</span> <span class=o>+</span> <span class=mi>1</span> <span class=o>+</span> <span class=p>(</span><span class=n>hislen</span> <span class=o>&gt;</span> <span class=mi>0</span> <span class=o>?</span> <span class=n>his_offsetTb</span><span class=p>[</span><span class=n>hislen</span> <span class=o>-</span> <span class=mi>1</span><span class=p>]</span> <span class=o>:</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=nf>close</span><span class=p>(</span><span class=n>fd</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>编写<code>getHis</code>函数，实现历史命令的随机访问，使用到了<code>seek</code>函数和<code>readn</code>函数</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>getHis</span><span class=p>(</span><span class=kt>int</span> <span class=n>index</span><span class=p>,</span> <span class=kt>char</span> <span class=o>*</span><span class=n>cmd</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=kt>int</span> <span class=n>fd</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=kt>int</span> <span class=n>r</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>((</span><span class=n>fd</span> <span class=o>=</span> <span class=nf>open</span><span class=p>(</span><span class=s>&#34;/.history&#34;</span><span class=p>,</span> <span class=n>O_RDONLY</span><span class=p>))</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=nf>user_panic</span><span class=p>(</span><span class=s>&#34;open .history failed&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>(</span><span class=n>index</span> <span class=o>&gt;=</span> <span class=n>hislen</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=o>*</span><span class=n>cmd</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>		<span class=k>return</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=kt>int</span> <span class=n>offset</span> <span class=o>=</span> <span class=p>(</span><span class=n>index</span> <span class=o>&gt;</span> <span class=mi>0</span> <span class=o>?</span> <span class=n>his_offsetTb</span><span class=p>[</span><span class=n>index</span> <span class=o>-</span> <span class=mi>1</span><span class=p>]</span> <span class=o>:</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=kt>int</span> <span class=n>len</span> <span class=o>=</span> <span class=p>(</span><span class=n>index</span> <span class=o>&gt;</span> <span class=mi>0</span> <span class=o>?</span> <span class=n>his_offsetTb</span><span class=p>[</span><span class=n>index</span><span class=p>]</span> <span class=o>-</span> <span class=n>his_offsetTb</span><span class=p>[</span><span class=n>index</span> <span class=o>-</span> <span class=mi>1</span><span class=p>]</span> <span class=o>:</span> <span class=n>his_offsetTb</span><span class=p>[</span><span class=n>index</span><span class=p>]);</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>((</span><span class=n>r</span> <span class=o>=</span> <span class=nf>seek</span><span class=p>(</span><span class=n>fd</span><span class=p>,</span> <span class=n>offset</span><span class=p>))</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=nf>user_panic</span><span class=p>(</span><span class=s>&#34;seek failed&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>((</span><span class=n>r</span> <span class=o>=</span> <span class=nf>readn</span><span class=p>(</span><span class=n>fd</span><span class=p>,</span> <span class=n>cmd</span><span class=p>,</span> <span class=n>len</span><span class=p>))</span> <span class=o>!=</span> <span class=n>len</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=nf>user_panic</span><span class=p>(</span><span class=s>&#34;read history failed&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=nf>close</span><span class=p>(</span><span class=n>fd</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=n>cmd</span><span class=p>[</span><span class=n>len</span> <span class=o>-</span> <span class=mi>1</span><span class=p>]</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>通过编写以上内容，已经具备实现历史命令的基本条件，接下来需要修改<code>readline</code>中处理键盘上下键的地方，我通过维护当前历史命令的下标<code>hisindex</code>来实现上下键历史命令的切换，每次<code>readline</code>时，初始化<code>hisindex</code>为当前历史命令的总条数<code>hislen</code>。</p><p>形式化步骤如下：</p><ul><li>维护光标的位置</li><li>根据当前历史命令下标获取历史命令</li><li>刷新控制台并写入历史命令</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>int</span> <span class=n>hisindex</span> <span class=o>=</span> <span class=n>hislen</span><span class=p>;</span> <span class=c1>// 历史命令位置
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kt>char</span> <span class=n>histmp</span><span class=p>[</span><span class=mi>128</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=k>case</span> <span class=mi>1</span><span class=o>:</span> <span class=c1>// up
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=nf>MOVEDOWN</span><span class=p>(</span><span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>(</span><span class=n>hisindex</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=n>hisindex</span><span class=o>--</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>		<span class=nf>getHis</span><span class=p>(</span><span class=n>hisindex</span><span class=p>,</span> <span class=n>histmp</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=nf>strcpy</span><span class=p>(</span><span class=n>buf</span><span class=p>,</span> <span class=n>histmp</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=nf>flushLine</span><span class=p>(</span><span class=n>len</span><span class=p>,</span> <span class=n>i</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=nf>printf</span><span class=p>(</span><span class=s>&#34;%s&#34;</span><span class=p>,</span> <span class=n>buf</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=n>len</span> <span class=o>=</span> <span class=nf>strlen</span><span class=p>(</span><span class=n>buf</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=n>i</span> <span class=o>=</span> <span class=n>len</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=k>break</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=k>case</span> <span class=mi>2</span><span class=o>:</span> <span class=c1>// down
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=k>if</span> <span class=p>(</span><span class=n>hisindex</span> <span class=o>&lt;</span> <span class=n>hislen</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=n>hisindex</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>		<span class=nf>getHis</span><span class=p>(</span><span class=n>hisindex</span><span class=p>,</span> <span class=n>histmp</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=nf>strcpy</span><span class=p>(</span><span class=n>buf</span><span class=p>,</span> <span class=n>histmp</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=nf>flushLine</span><span class=p>(</span><span class=n>len</span><span class=p>,</span> <span class=n>i</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=nf>printf</span><span class=p>(</span><span class=s>&#34;%s&#34;</span><span class=p>,</span> <span class=n>buf</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=n>len</span> <span class=o>=</span> <span class=nf>strlen</span><span class=p>(</span><span class=n>buf</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=n>i</span> <span class=o>=</span> <span class=n>len</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=k>break</span><span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div><p>最后实现<code>history</code>命令，编写<code>history.c</code>文件，打开<code>.history</code>文件，将其中的内容格式化输出即可，用到<code>open</code>和<code>read</code>两个函数</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=k>if</span> <span class=p>((</span><span class=n>r</span> <span class=o>=</span> <span class=nf>open</span><span class=p>(</span><span class=s>&#34;/.history&#34;</span><span class=p>,</span> <span class=n>O_RDONLY</span><span class=p>))</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nf>user_panic</span><span class=p>(</span><span class=s>&#34;open history failed&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=n>f</span> <span class=o>=</span> <span class=n>r</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>while</span> <span class=p>((</span><span class=n>r</span> <span class=o>=</span> <span class=nf>read</span><span class=p>(</span><span class=n>f</span><span class=p>,</span> <span class=o>&amp;</span><span class=n>buf</span><span class=p>,</span> <span class=mi>1</span><span class=p>))</span> <span class=o>==</span> <span class=mi>1</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>(</span><span class=n>newline</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=nf>printf</span><span class=p>(</span><span class=s>&#34;%-5d  &#34;</span><span class=p>,</span> <span class=n>linecnt</span><span class=o>++</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=n>newline</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=nf>printf</span><span class=p>(</span><span class=s>&#34;%c&#34;</span><span class=p>,</span> <span class=n>buf</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>(</span><span class=n>buf</span> <span class=o>==</span> <span class=sc>&#39;\n&#39;</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=n>newline</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=shell环境变量>shell环境变量</h3><p>我的做法是通过系统调用，在内核中维护环境变量，实现对环境变量的增删改查</p><p>首先定义保存环境变量相关信息的结构体：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=k>struct</span> <span class=n>shell_var</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=kt>char</span> <span class=n>name</span><span class=p>[</span><span class=n>MAXVARNAMELEN</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>	<span class=kt>char</span> <span class=n>value</span><span class=p>[</span><span class=n>MAXVARVALUELEN</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>	<span class=kt>int</span> <span class=n>shellid</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=kt>int</span> <span class=n>share</span><span class=p>;</span><span class=c1>//1表示为环境变量
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=kt>int</span> <span class=n>rdonly</span><span class=p>;</span><span class=c1>//1表示为只读
+</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=kt>int</span> <span class=n>valid</span><span class=p>;</span><span class=c1>//1表示该变量是否有效
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>再实现系统调用，以下是四个用户态的系统调用部分</p><ul><li><code>syscall_shellid_alloc</code>用户给每个shell进程分配一个id用于标识环境变量是被哪个环境变量创建的</li><li><code>syscall_declare_shell_var</code>用于声明一个环境变量或者修改环境变量</li><li><code>syscall_unset_shell_var</code>用户删除一个环境变量</li><li><code>syscall_get_shell_var</code>用于获得某个环境变量的值</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>int</span> <span class=nf>syscall_declare_shell_var</span><span class=p>(</span><span class=kt>int</span> <span class=n>shellid</span><span class=p>,</span> <span class=kt>char</span> <span class=o>*</span><span class=n>name</span><span class=p>,</span> <span class=kt>char</span> <span class=o>*</span><span class=n>value</span><span class=p>,</span> <span class=kt>int</span> <span class=n>share</span><span class=p>,</span> <span class=kt>int</span> <span class=n>rdonly</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>syscall_unset_shell_var</span><span class=p>(</span><span class=kt>int</span> <span class=n>shellid</span><span class=p>,</span> <span class=kt>char</span> <span class=o>*</span><span class=n>name</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>syscall_get_shell_var</span><span class=p>(</span><span class=kt>int</span> <span class=n>shellid</span><span class=p>,</span> <span class=kt>char</span> <span class=o>*</span><span class=n>name</span><span class=p>,</span> <span class=kt>char</span> <span class=o>*</span><span class=n>value</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>syscall_shellid_alloc</span><span class=p>();</span>
+</span></span></code></pre></td></tr></table></div></div><p>需要注意的时，在实现这四个系统调用时，需要判断内核中保存的环境变量对当前shell进程是否可见，因此我定义了一个<code>isvisible</code>函数，用于判断某个变量是否可见。同时为了实现简单，规定对于所有shell进程，其可见的变量不会出现重名的情况，即在实现<code>declare</code>的时候，优先在可见的变量中查找有无名字为参数<code>name</code>的变量</p><p>以下是内核态中的系统调用部分</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>int</span> <span class=nf>sys_shellid_alloc</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=o>++</span><span class=n>sid</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>在实现<code>declare</code>和<code>unset</code>时，需要注意判断可见性和只读性</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>int</span> <span class=nf>sys_declare_shell_var</span><span class=p>(</span><span class=kt>int</span> <span class=n>shellid</span><span class=p>,</span> <span class=kt>char</span> <span class=o>*</span><span class=n>name</span><span class=p>,</span> <span class=kt>char</span> <span class=o>*</span><span class=n>value</span><span class=p>,</span> <span class=kt>int</span> <span class=n>share</span><span class=p>,</span> <span class=kt>int</span> <span class=n>rdonly</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=kt>int</span> <span class=n>varid</span> <span class=o>=</span> <span class=nf>get_var</span><span class=p>(</span><span class=n>shellid</span><span class=p>,</span> <span class=n>name</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>(</span><span class=n>varid</span> <span class=o>==</span> <span class=o>-</span><span class=mi>1</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=n>varid</span> <span class=o>=</span> <span class=n>varnum</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=n>VAR</span><span class=p>[</span><span class=n>varid</span><span class=p>].</span><span class=n>rdonly</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=k>return</span> <span class=o>-</span><span class=n>E_VAR_ERR</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=nf>strcpy</span><span class=p>(</span><span class=n>VAR</span><span class=p>[</span><span class=n>varid</span><span class=p>].</span><span class=n>name</span><span class=p>,</span> <span class=n>name</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=nf>strcpy</span><span class=p>(</span><span class=n>VAR</span><span class=p>[</span><span class=n>varid</span><span class=p>].</span><span class=n>value</span><span class=p>,</span> <span class=n>value</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=n>VAR</span><span class=p>[</span><span class=n>varid</span><span class=p>].</span><span class=n>shellid</span> <span class=o>=</span> <span class=n>shellid</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=n>VAR</span><span class=p>[</span><span class=n>varid</span><span class=p>].</span><span class=n>share</span> <span class=o>=</span> <span class=n>share</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=n>VAR</span><span class=p>[</span><span class=n>varid</span><span class=p>].</span><span class=n>rdonly</span> <span class=o>=</span> <span class=n>rdonly</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=n>VAR</span><span class=p>[</span><span class=n>varid</span><span class=p>].</span><span class=n>valid</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>int</span> <span class=nf>sys_unset_shell_var</span><span class=p>(</span><span class=kt>int</span> <span class=n>shellid</span><span class=p>,</span> <span class=kt>char</span> <span class=o>*</span><span class=n>name</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=kt>int</span> <span class=n>varid</span> <span class=o>=</span> <span class=nf>get_var</span><span class=p>(</span><span class=n>shellid</span><span class=p>,</span> <span class=n>name</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>(</span><span class=n>varid</span> <span class=o>==</span> <span class=o>-</span><span class=mi>1</span> <span class=o>||</span> <span class=n>VAR</span><span class=p>[</span><span class=n>varid</span><span class=p>].</span><span class=n>rdonly</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=k>return</span> <span class=o>-</span><span class=n>E_VAR_ERR</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>	<span class=n>VAR</span><span class=p>[</span><span class=n>varid</span><span class=p>].</span><span class=n>valid</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>实现<code>get</code>的时候，若传入参数<code>name</code>为空，则返回所有的可见变量信息</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>int</span> <span class=nf>sys_get_shell_var</span><span class=p>(</span><span class=kt>int</span> <span class=n>shellid</span><span class=p>,</span> <span class=kt>char</span> <span class=o>*</span><span class=n>name</span><span class=p>,</span> <span class=kt>char</span> <span class=o>*</span><span class=n>value</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=kt>char</span> <span class=o>*</span><span class=n>tmp</span> <span class=o>=</span> <span class=n>value</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=p>(</span><span class=n>name</span> <span class=o>==</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=k>for</span> <span class=p>(</span><span class=kt>int</span> <span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>varnum</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=k>if</span> <span class=p>(</span><span class=nf>isvisible</span><span class=p>(</span><span class=n>shellid</span><span class=p>,</span> <span class=n>VAR</span><span class=p>[</span><span class=n>i</span><span class=p>])</span> <span class=o>&amp;&amp;</span> <span class=n>VAR</span><span class=p>[</span><span class=n>i</span><span class=p>].</span><span class=n>valid</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>				<span class=nf>strcpy</span><span class=p>(</span><span class=n>tmp</span><span class=p>,</span> <span class=s>&#34;name: &#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>				<span class=n>tmp</span> <span class=o>+=</span> <span class=mi>6</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>				<span class=nf>strcpy</span><span class=p>(</span><span class=n>tmp</span><span class=p>,</span> <span class=n>VAR</span><span class=p>[</span><span class=n>i</span><span class=p>].</span><span class=n>name</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>				<span class=n>tmp</span> <span class=o>+=</span> <span class=nf>strlen</span><span class=p>(</span><span class=n>VAR</span><span class=p>[</span><span class=n>i</span><span class=p>].</span><span class=n>name</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>				<span class=nf>strcpy</span><span class=p>(</span><span class=n>tmp</span><span class=p>,</span> <span class=s>&#34; value: &#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>				<span class=n>tmp</span> <span class=o>+=</span> <span class=mi>8</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>				<span class=nf>strcpy</span><span class=p>(</span><span class=n>tmp</span><span class=p>,</span> <span class=n>VAR</span><span class=p>[</span><span class=n>i</span><span class=p>].</span><span class=n>value</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>				<span class=n>tmp</span> <span class=o>+=</span> <span class=nf>strlen</span><span class=p>(</span><span class=n>VAR</span><span class=p>[</span><span class=n>i</span><span class=p>].</span><span class=n>value</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>				<span class=nf>strcpy</span><span class=p>(</span><span class=n>tmp</span><span class=p>,</span> <span class=s>&#34; mood: &#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>				<span class=n>tmp</span> <span class=o>+=</span> <span class=mi>7</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>				<span class=k>if</span> <span class=p>(</span><span class=n>VAR</span><span class=p>[</span><span class=n>i</span><span class=p>].</span><span class=n>rdonly</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>					<span class=o>*</span><span class=n>tmp</span><span class=o>++</span> <span class=o>=</span> <span class=sc>&#39;r&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>				<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>					<span class=o>*</span><span class=n>tmp</span><span class=o>++</span> <span class=o>=</span> <span class=sc>&#39;w&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>				<span class=p>}</span>
+</span></span><span class=line><span class=cl>				<span class=k>if</span> <span class=p>(</span><span class=n>VAR</span><span class=p>[</span><span class=n>i</span><span class=p>].</span><span class=n>share</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>					<span class=o>*</span><span class=n>tmp</span><span class=o>++</span> <span class=o>=</span> <span class=sc>&#39;x&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>				<span class=p>}</span>
+</span></span><span class=line><span class=cl>				<span class=o>*</span><span class=n>tmp</span><span class=o>++</span> <span class=o>=</span> <span class=sc>&#39;\n&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>			<span class=p>}</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>		<span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=kt>int</span> <span class=n>varid</span> <span class=o>=</span> <span class=nf>get_var</span><span class=p>(</span><span class=n>shellid</span><span class=p>,</span> <span class=n>name</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>		<span class=c1>// printk(&#34;varid:%d\n&#34;, varid);
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl>		<span class=k>if</span> <span class=p>(</span><span class=n>varid</span> <span class=o>==</span> <span class=o>-</span><span class=mi>1</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=k>return</span> <span class=o>-</span><span class=n>E_VAR_ERR</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>		<span class=nf>strcpy</span><span class=p>(</span><span class=n>value</span><span class=p>,</span> <span class=n>VAR</span><span class=p>[</span><span class=n>varid</span><span class=p>].</span><span class=n>value</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=o>-</span><span class=n>E_VAR_ERR</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>完成上述功能后，需要修改shell部分</p><ul><li>在<code>sh.c</code>中，每次进入主函数都通过系统调用<code>syscall_shellid_alloc</code>获得当前shell的id</li><li>在<code>parsecmd</code>中，当遇到<code>$</code>时，解析后面的字符串为对应变量的值</li><li>在<code>runcmd</code>中，当命令为<code>delcare</code>或<code>unset</code>时，在参数列表<code>argv</code>末尾追加当前shell的id</li></ul><h4 id=实现declare命令>实现declare命令</h4><p>编写<code>declare.c</code>文件，根据传入的选项和参数列表进行相应的处理</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=n>ARGBEGIN</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=k>default</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>		<span class=nf>usage</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>	<span class=k>case</span> <span class=sc>&#39;x&#39;</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>	<span class=k>case</span> <span class=sc>&#39;r&#39;</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>		<span class=n>flag</span><span class=p>[(</span><span class=n>u_char</span><span class=p>)</span><span class=nf>ARGC</span><span class=p>()]</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>		<span class=k>break</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=n>ARGEND</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=k>if</span> <span class=p>(</span><span class=n>argc</span> <span class=o>==</span> <span class=mi>1</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=kt>char</span> <span class=n>buf</span><span class=p>[</span><span class=mi>4096</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>		<span class=k>if</span> <span class=p>((</span><span class=n>r</span> <span class=o>=</span> <span class=nf>syscall_get_shell_var</span><span class=p>(</span><span class=n>shellid</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=n>buf</span><span class=p>))</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=nf>printf</span><span class=p>(</span><span class=s>&#34;declare wrong: %d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>r</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>		<span class=nf>printf</span><span class=p>(</span><span class=s>&#34;%s</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>buf</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=n>argc</span> <span class=o>==</span> <span class=mi>2</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=k>if</span> <span class=p>((</span><span class=n>r</span> <span class=o>=</span> <span class=nf>syscall_declare_shell_var</span><span class=p>(</span><span class=n>shellid</span><span class=p>,</span> <span class=n>argv</span><span class=p>[</span><span class=mi>0</span><span class=p>],</span> <span class=s>&#34;&#34;</span><span class=p>,</span> <span class=n>share</span><span class=p>,</span> <span class=n>rdonly</span><span class=p>))</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=nf>printf</span><span class=p>(</span><span class=s>&#34;declare wrong: %d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>r</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=n>argc</span> <span class=o>==</span> <span class=mi>3</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=n>val</span> <span class=o>=</span> <span class=n>argv</span><span class=p>[</span><span class=mi>1</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>		<span class=k>if</span> <span class=p>(</span><span class=n>val</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>==</span> <span class=sc>&#39;=&#39;</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=n>val</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>			<span class=k>if</span> <span class=p>((</span><span class=n>r</span> <span class=o>=</span> <span class=nf>syscall_declare_shell_var</span><span class=p>(</span><span class=n>shellid</span><span class=p>,</span> <span class=n>argv</span><span class=p>[</span><span class=mi>0</span><span class=p>],</span> <span class=n>val</span><span class=p>,</span> <span class=n>share</span><span class=p>,</span> <span class=n>rdonly</span><span class=p>))</span> <span class=o>&lt;</span>
+</span></span><span class=line><span class=cl>			    <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>				<span class=nf>printf</span><span class=p>(</span><span class=s>&#34;declare wrong: %d</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span> <span class=n>r</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>			<span class=p>}</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=nf>usage</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h4 id=实现unset命令>实现unset命令</h4><p>编写<code>unset.c</code>文件，根据传入的变量名使用系统调用即可</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=k>for</span> <span class=p>(</span><span class=n>i</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;</span> <span class=n>argc</span> <span class=o>-</span> <span class=mi>1</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>			<span class=k>if</span> <span class=p>((</span><span class=n>r</span> <span class=o>=</span> <span class=nf>syscall_unset_shell_var</span><span class=p>(</span><span class=n>shellid</span><span class=p>,</span> <span class=n>argv</span><span class=p>[</span><span class=n>i</span><span class=p>]))</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>				<span class=nf>printf</span><span class=p>(</span><span class=s>&#34;environment value %s isn&#39;t declared or is readonly</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>				       <span class=n>argv</span><span class=p>[</span><span class=n>i</span><span class=p>]);</span>
+</span></span><span class=line><span class=cl>			<span class=p>}</span>
+</span></span><span class=line><span class=cl>		<span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=功能测试>功能测试</h2><h3 id=一行多命令-1>一行多命令</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=err>$</span> <span class=n>echo</span> <span class=mi>1</span><span class=p>;</span><span class=n>echo</span> <span class=mi>12</span><span class=p>;</span><span class=n>echo</span> <span class=mi>123</span>
+</span></span><span class=line><span class=cl><span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00003</span><span class=mi>805</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>00003</span><span class=mi>805</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00003</span><span class=mi>805</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>00003</span><span class=mi>805</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00003004</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>00003004</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00003004</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>00003004</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span><span class=line><span class=cl><span class=mi>12</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00004</span><span class=mi>805</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>00004</span><span class=mi>805</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00004</span><span class=mi>805</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>00004</span><span class=mi>805</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00004004</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>00004004</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00004004</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>00004004</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span><span class=line><span class=cl><span class=mi>123</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00005004</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>00005004</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00005004</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>00005004</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00002</span><span class=mi>803</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>00002</span><span class=mi>803</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00002</span><span class=mi>803</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>00002</span><span class=mi>803</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>echo</span> <span class=mi>123</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=mi>123</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00006</span><span class=mi>805</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>00006</span><span class=mi>805</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00006</span><span class=mi>805</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>00006</span><span class=mi>805</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00006004</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>00006004</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00006004</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>00006004</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00005</span><span class=mi>803</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>00005</span><span class=mi>803</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00005</span><span class=mi>803</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>00005</span><span class=mi>803</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=p>;</span><span class=n>echo</span> <span class=mi>123</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00007</span><span class=mi>804</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>00007</span><span class=mi>804</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00007</span><span class=mi>804</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>00007</span><span class=mi>804</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span><span class=line><span class=cl><span class=mi>123</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0000</span><span class=mi>8004</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>0000</span><span class=mi>8004</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0000</span><span class=mi>8004</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>0000</span><span class=mi>8004</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00007003</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>00007003</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00007003</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>00007003</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span></code></pre></td></tr></table></div></div><h3 id=后台任务-1>后台任务</h3><ul><li>编写一个运行时间比较久的测试程序<code>testbg.c</code></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;lib.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=kt>int</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=kt>int</span> <span class=n>i</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=nf>debugf</span><span class=p>(</span><span class=s>&#34;a very slow code begin</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=k>for</span> <span class=p>(</span><span class=n>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;=</span> <span class=mi>999999999</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>		<span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=nf>debugf</span><span class=p>(</span><span class=s>&#34;a very slow code end</span><span class=se>\n</span><span class=s>&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=err>$</span> <span class=n>testbg</span><span class=o>&amp;</span><span class=n>echo</span> <span class=mi>123</span>
+</span></span><span class=line><span class=cl><span class=mi>123</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0000</span><span class=mi>8803</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>0000</span><span class=mi>8803</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0000</span><span class=mi>8803</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>0000</span><span class=mi>8803</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00007</span><span class=mi>804</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>00007</span><span class=mi>804</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00007</span><span class=mi>804</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>00007</span><span class=mi>804</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>a</span> <span class=n>very</span> <span class=n>slow</span> <span class=n>code</span> <span class=n>begin</span>
+</span></span><span class=line><span class=cl><span class=n>echo</span> <span class=mi>321</span>
+</span></span><span class=line><span class=cl><span class=mi>321</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0000</span><span class=n>a003</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>0000</span><span class=n>a003</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0000</span><span class=n>a003</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>0000</span><span class=n>a003</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0000</span><span class=mi>9804</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>0000</span><span class=mi>9804</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0000</span><span class=mi>9804</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>0000</span><span class=mi>9804</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>a</span> <span class=n>very</span> <span class=n>slow</span> <span class=n>code</span> <span class=n>end</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0000</span><span class=mi>9005</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>0000</span><span class=mi>9005</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0000</span><span class=mi>9005</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>0000</span><span class=mi>9005</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0000</span><span class=mi>8006</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>0000</span><span class=mi>8006</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0000</span><span class=mi>8006</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>0000</span><span class=mi>8006</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span></code></pre></td></tr></table></div></div><p>可以看到<code>testbg</code>在后台运行</p><h3 id=引号支持-1>引号支持</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=err>$</span> <span class=n>echo</span> <span class=s>&#34;ls.b | cat.b&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>ls</span><span class=p>.</span><span class=n>b</span> <span class=o>|</span> <span class=n>cat</span><span class=p>.</span><span class=n>b</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0000</span><span class=n>b805</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>0000</span><span class=n>b805</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0000</span><span class=n>b805</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>0000</span><span class=n>b805</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0000</span><span class=n>b006</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>0000</span><span class=n>b006</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0000</span><span class=n>b006</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>0000</span><span class=n>b006</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span></code></pre></td></tr></table></div></div><h3 id=键入命令时任意位置的修改-1>键入命令时任意位置的修改</h3><p>测试通过在键盘上依次按下<code>1,2,3,4,⬅,⬅,a,b,c,Backspace,➡,x,y,z,enter</code>，显示效果如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=err>$</span> <span class=mi>12</span><span class=n>ab3xyz4</span>
+</span></span><span class=line><span class=cl><span class=n>spawn</span> <span class=mi>12</span><span class=nl>ab3xyz4</span><span class=p>:</span> <span class=o>-</span><span class=mi>10</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0000</span><span class=n>c006</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>0000</span><span class=n>c006</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0000</span><span class=n>c006</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>0000</span><span class=n>c006</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span></code></pre></td></tr></table></div></div><h3 id=程序名称b的省略>程序名称<code>.b</code>的省略</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=err>$</span> <span class=n>ls</span>
+</span></span><span class=line><span class=cl><span class=n>testarg</span><span class=p>.</span><span class=n>b</span> <span class=n>cat</span><span class=p>.</span><span class=n>b</span> <span class=n>pingpong</span><span class=p>.</span><span class=n>b</span> <span class=n>testbss</span><span class=p>.</span><span class=n>b</span> <span class=n>newmotd</span> <span class=n>history</span><span class=p>.</span><span class=n>b</span> <span class=n>testpiperace</span><span class=p>.</span><span class=n>b</span> <span class=n>testpipe</span><span class=p>.</span><span class=n>b</span> <span class=n>motd</span> <span class=n>init</span><span class=p>.</span><span class=n>b</span> <span class=n>num</span><span class=p>.</span><span class=n>b</span> <span class=n>touch</span><span class=p>.</span><span class=n>b</span> <span class=n>mkdir</span><span class=p>.</span><span class=n>b</span> <span class=n>testfdsharing</span><span class=p>.</span><span class=n>b</span> <span class=n>declare</span><span class=p>.</span><span class=n>b</span> <span class=n>testbg</span><span class=p>.</span><span class=n>b</span> <span class=n>ls</span><span class=p>.</span><span class=n>b</span> <span class=n>echo</span><span class=p>.</span><span class=n>b</span> <span class=n>sh</span><span class=p>.</span><span class=n>b</span> <span class=n>tree</span><span class=p>.</span><span class=n>b</span> <span class=n>unset</span><span class=p>.</span><span class=n>b</span> <span class=n>halt</span><span class=p>.</span><span class=n>b</span> <span class=n>testptelibrary</span><span class=p>.</span><span class=n>b</span> <span class=p>.</span><span class=n>history</span> 
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0000</span><span class=n>d005</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>0000</span><span class=n>d005</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0000</span><span class=n>d005</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>0000</span><span class=n>d005</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0000</span><span class=n>c806</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>0000</span><span class=n>c806</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0000</span><span class=n>c806</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>0000</span><span class=n>c806</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>echo</span> <span class=mi>123</span>
+</span></span><span class=line><span class=cl><span class=mi>123</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mf>0000e005</span><span class=p>]</span> <span class=n>destroying</span> <span class=mf>0000e005</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mf>0000e005</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mf>0000e005</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0000</span><span class=n>d806</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>0000</span><span class=n>d806</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0000</span><span class=n>d806</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>0000</span><span class=n>d806</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span></code></pre></td></tr></table></div></div><h3 id=treemkdirtouch命令>tree,mkdir,touch命令</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=err>$</span> <span class=n>mkdir</span> <span class=n>dir1</span>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>touch</span> <span class=n>dir1</span><span class=o>/</span><span class=n>file1</span>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>touch</span> <span class=n>dir1</span><span class=o>/</span><span class=n>file2</span>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>mkdir</span> <span class=n>dir1</span><span class=o>/</span><span class=n>dir11</span>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>touch</span> <span class=n>dir1</span><span class=o>/</span><span class=n>dir11</span><span class=o>/</span><span class=n>file3</span>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>touch</span> <span class=n>dir1</span><span class=o>/</span><span class=n>dir11</span><span class=o>/</span><span class=n>file4</span>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>mkdir</span> <span class=n>dir1</span><span class=o>/</span><span class=n>dir12</span>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>touch</span> <span class=n>dir1</span><span class=o>/</span><span class=n>dir12</span><span class=o>/</span><span class=n>file5</span>    
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>touch</span> <span class=n>dir1</span><span class=o>/</span><span class=n>dir12</span><span class=o>/</span><span class=n>file6</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>tree</span> <span class=n>dir1</span>             
+</span></span><span class=line><span class=cl><span class=n>dir1</span>
+</span></span><span class=line><span class=cl><span class=o>|--</span> <span class=n>file1</span>
+</span></span><span class=line><span class=cl><span class=o>|--</span> <span class=n>file2</span>
+</span></span><span class=line><span class=cl><span class=o>|--</span> <span class=n>dir11</span>
+</span></span><span class=line><span class=cl>    <span class=o>|--</span> <span class=n>file3</span>
+</span></span><span class=line><span class=cl>    <span class=o>|--</span> <span class=n>file4</span>
+</span></span><span class=line><span class=cl><span class=o>|--</span> <span class=n>dir12</span>
+</span></span><span class=line><span class=cl>    <span class=o>|--</span> <span class=n>file5</span>
+</span></span><span class=line><span class=cl>    <span class=o>|--</span> <span class=n>file6</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=mi>2</span> <span class=n>directories</span><span class=p>,</span> <span class=mi>6</span> <span class=n>files</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>tree</span> <span class=o>-</span><span class=n>d</span> <span class=n>dir1</span>
+</span></span><span class=line><span class=cl><span class=n>dir1</span>
+</span></span><span class=line><span class=cl><span class=o>|--</span> <span class=n>dir11</span>
+</span></span><span class=line><span class=cl><span class=o>|--</span> <span class=n>dir12</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=mi>2</span> <span class=n>directories</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>tree</span> <span class=o>-</span><span class=n>f</span> <span class=n>dir1</span>
+</span></span><span class=line><span class=cl><span class=n>dir1</span>
+</span></span><span class=line><span class=cl><span class=o>|--</span> <span class=n>dir1</span><span class=o>/</span><span class=n>file1</span>
+</span></span><span class=line><span class=cl><span class=o>|--</span> <span class=n>dir1</span><span class=o>/</span><span class=n>file2</span>
+</span></span><span class=line><span class=cl><span class=o>|--</span> <span class=n>dir1</span><span class=o>/</span><span class=n>dir11</span>
+</span></span><span class=line><span class=cl>    <span class=o>|--</span> <span class=n>dir1</span><span class=o>/</span><span class=n>dir11</span><span class=o>/</span><span class=n>file3</span>
+</span></span><span class=line><span class=cl>    <span class=o>|--</span> <span class=n>dir1</span><span class=o>/</span><span class=n>dir11</span><span class=o>/</span><span class=n>file4</span>
+</span></span><span class=line><span class=cl><span class=o>|--</span> <span class=n>dir1</span><span class=o>/</span><span class=n>dir12</span>
+</span></span><span class=line><span class=cl>    <span class=o>|--</span> <span class=n>dir1</span><span class=o>/</span><span class=n>dir12</span><span class=o>/</span><span class=n>file5</span>
+</span></span><span class=line><span class=cl>    <span class=o>|--</span> <span class=n>dir1</span><span class=o>/</span><span class=n>dir12</span><span class=o>/</span><span class=n>file6</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=mi>2</span> <span class=n>directories</span><span class=p>,</span> <span class=mi>6</span> <span class=n>files</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>重定向</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=err>$</span> <span class=n>echo</span> <span class=n>test123</span> <span class=o>&gt;</span> <span class=n>newfile</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00015</span><span class=mi>804</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>00015</span><span class=mi>804</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00015</span><span class=mi>804</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>00015</span><span class=mi>804</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00015003</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>00015003</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00015003</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>00015003</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>cat</span> <span class=n>newfile</span>
+</span></span><span class=line><span class=cl><span class=n>test123</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00017</span><span class=mi>804</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>00017</span><span class=mi>804</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00017</span><span class=mi>804</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>00017</span><span class=mi>804</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00017003</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>00017003</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>00017003</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>00017003</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span></code></pre></td></tr></table></div></div><h3 id=历史命令功能-1>历史命令功能</h3><p>输入序列<code>history,enter,↑,↑,↑,↓,enter</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=err>$</span> <span class=n>history</span>
+</span></span><span class=line><span class=cl><span class=mi>1</span>      <span class=n>mkdir</span> <span class=n>dir1</span>
+</span></span><span class=line><span class=cl><span class=mi>2</span>      <span class=n>mkdir</span> <span class=n>dir2</span>
+</span></span><span class=line><span class=cl><span class=mi>3</span>      <span class=n>mkdir</span> <span class=n>dir3</span>
+</span></span><span class=line><span class=cl><span class=mi>4</span>      <span class=n>touch</span> <span class=n>dir1</span><span class=o>/</span><span class=n>file1</span>
+</span></span><span class=line><span class=cl><span class=mi>5</span>      <span class=n>touch</span> <span class=n>dir1</span><span class=o>/</span><span class=n>file2</span>
+</span></span><span class=line><span class=cl><span class=mi>6</span>      <span class=n>mkdir</span> <span class=n>dir1</span><span class=o>/</span><span class=n>dir11</span>
+</span></span><span class=line><span class=cl><span class=mi>7</span>      <span class=n>touch</span> <span class=n>dir1</span><span class=o>/</span><span class=n>dir11</span><span class=o>/</span><span class=n>file3</span>
+</span></span><span class=line><span class=cl><span class=mi>8</span>      <span class=n>touch</span> <span class=n>dir1</span><span class=o>/</span><span class=n>dir11</span><span class=o>/</span><span class=n>file4</span>
+</span></span><span class=line><span class=cl><span class=mi>9</span>      <span class=n>tree</span>
+</span></span><span class=line><span class=cl><span class=mi>10</span>     <span class=n>tree</span> <span class=n>dir1</span>
+</span></span><span class=line><span class=cl><span class=mi>11</span>     <span class=n>mkdir</span> <span class=n>dir1</span><span class=o>/</span><span class=n>dir12</span>
+</span></span><span class=line><span class=cl><span class=mi>12</span>     <span class=n>touch</span> <span class=n>dir1</span><span class=o>/</span><span class=n>dir12</span><span class=o>/</span><span class=n>file5</span>
+</span></span><span class=line><span class=cl><span class=mi>13</span>     <span class=n>touch</span> <span class=n>dir1</span><span class=o>/</span><span class=n>dir12</span><span class=o>/</span><span class=n>file6</span>
+</span></span><span class=line><span class=cl><span class=mi>14</span>     <span class=n>tree</span> <span class=n>dir1</span>
+</span></span><span class=line><span class=cl><span class=mi>15</span>     <span class=n>tree</span> <span class=o>-</span><span class=n>d</span> <span class=n>dir1</span>
+</span></span><span class=line><span class=cl><span class=mi>16</span>     <span class=n>tree</span> <span class=o>-</span><span class=n>f</span> <span class=n>dir1</span>
+</span></span><span class=line><span class=cl><span class=mi>17</span>     <span class=n>tree</span>
+</span></span><span class=line><span class=cl><span class=mi>18</span>     <span class=n>tree</span> <span class=o>-</span><span class=n>f</span>
+</span></span><span class=line><span class=cl><span class=mi>19</span>     <span class=n>tree</span> <span class=o>-</span><span class=n>f</span> <span class=n>dir1</span>
+</span></span><span class=line><span class=cl><span class=mi>20</span>     <span class=n>echo</span> <span class=n>test123</span> <span class=o>&gt;</span> <span class=n>newfile</span>
+</span></span><span class=line><span class=cl><span class=mi>21</span>     <span class=n>tree</span>
+</span></span><span class=line><span class=cl><span class=mi>22</span>     <span class=n>cat</span> <span class=n>newfile</span>
+</span></span><span class=line><span class=cl><span class=mi>23</span>     <span class=n>history</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0001</span><span class=mi>8804</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>0001</span><span class=mi>8804</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0001</span><span class=mi>8804</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>0001</span><span class=mi>8804</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0001</span><span class=mi>8003</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>0001</span><span class=mi>8003</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0001</span><span class=mi>8003</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>0001</span><span class=mi>8003</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>cat</span> <span class=n>newfile</span>           
+</span></span><span class=line><span class=cl><span class=n>test123</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0001</span><span class=mi>9804</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>0001</span><span class=mi>9804</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0001</span><span class=mi>9804</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>0001</span><span class=mi>9804</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0001</span><span class=mi>9003</span><span class=p>]</span> <span class=n>destroying</span> <span class=mo>0001</span><span class=mi>9003</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mo>0001</span><span class=mi>9003</span><span class=p>]</span> <span class=n>free</span> <span class=n>env</span> <span class=mo>0001</span><span class=mi>9003</span>
+</span></span><span class=line><span class=cl><span class=n>i</span> <span class=n>am</span> <span class=n>killed</span> <span class=p>...</span> 
+</span></span></code></pre></td></tr></table></div></div><h3 id=shell环境变量-1>shell环境变量</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=err>$</span> <span class=n>declare</span> <span class=o>-</span><span class=n>x</span> <span class=n>var1</span> <span class=o>=</span><span class=mi>1</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>declare</span> <span class=o>-</span><span class=n>x</span> <span class=n>var2</span> <span class=o>=</span><span class=mi>2</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>declare</span> <span class=n>var3</span> <span class=o>=</span><span class=mi>3</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>echo</span> <span class=err>$</span><span class=n>var3</span>
+</span></span><span class=line><span class=cl><span class=mi>3</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>declare</span>
+</span></span><span class=line><span class=cl><span class=nl>name</span><span class=p>:</span> <span class=n>var1</span> <span class=nl>value</span><span class=p>:</span> <span class=mi>1</span> <span class=nl>mood</span><span class=p>:</span> <span class=n>wx</span>
+</span></span><span class=line><span class=cl><span class=nl>name</span><span class=p>:</span> <span class=n>var2</span> <span class=nl>value</span><span class=p>:</span> <span class=mi>2</span> <span class=nl>mood</span><span class=p>:</span> <span class=n>wx</span>
+</span></span><span class=line><span class=cl><span class=nl>name</span><span class=p>:</span> <span class=n>var3</span> <span class=nl>value</span><span class=p>:</span> <span class=mi>3</span> <span class=nl>mood</span><span class=p>:</span> <span class=n>w</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>sh</span>
+</span></span><span class=line><span class=cl><span class=nl>shellid</span><span class=p>:</span><span class=mi>2</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::</span>
+</span></span><span class=line><span class=cl><span class=o>::</span>                                                         <span class=o>::</span>
+</span></span><span class=line><span class=cl><span class=o>::</span>                     <span class=n>MOS</span> <span class=n>Shell</span> <span class=mi>2023</span>                      <span class=o>::</span>
+</span></span><span class=line><span class=cl><span class=o>::</span>                                                         <span class=o>::</span>
+</span></span><span class=line><span class=cl><span class=o>:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>declare</span>
+</span></span><span class=line><span class=cl><span class=nl>name</span><span class=p>:</span> <span class=n>var1</span> <span class=nl>value</span><span class=p>:</span> <span class=mi>1</span> <span class=nl>mood</span><span class=p>:</span> <span class=n>wx</span>
+</span></span><span class=line><span class=cl><span class=nl>name</span><span class=p>:</span> <span class=n>var2</span> <span class=nl>value</span><span class=p>:</span> <span class=mi>2</span> <span class=nl>mood</span><span class=p>:</span> <span class=n>wx</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>declare</span> <span class=o>-</span><span class=n>r</span> <span class=n>var4</span> <span class=o>=</span><span class=mi>4</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>unset</span> <span class=n>var1</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>declare</span> 
+</span></span><span class=line><span class=cl><span class=nl>name</span><span class=p>:</span> <span class=n>var2</span> <span class=nl>value</span><span class=p>:</span> <span class=mi>2</span> <span class=nl>mood</span><span class=p>:</span> <span class=n>wx</span>
+</span></span><span class=line><span class=cl><span class=nl>name</span><span class=p>:</span> <span class=n>var4</span> <span class=nl>value</span><span class=p>:</span> <span class=mi>4</span> <span class=nl>mood</span><span class=p>:</span> <span class=n>r</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>declare</span> <span class=n>var2</span> <span class=o>=</span><span class=mi>5</span>
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>declare</span>
+</span></span><span class=line><span class=cl><span class=nl>name</span><span class=p>:</span> <span class=n>var2</span> <span class=nl>value</span><span class=p>:</span> <span class=mi>5</span> <span class=nl>mood</span><span class=p>:</span> <span class=n>w</span>
+</span></span><span class=line><span class=cl><span class=nl>name</span><span class=p>:</span> <span class=n>var4</span> <span class=nl>value</span><span class=p>:</span> <span class=mi>4</span> <span class=nl>mood</span><span class=p>:</span> <span class=n>r</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>declare</span> <span class=n>var5</span> 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>declare</span>
+</span></span><span class=line><span class=cl><span class=nl>name</span><span class=p>:</span> <span class=n>var2</span> <span class=nl>value</span><span class=p>:</span> <span class=mi>5</span> <span class=nl>mood</span><span class=p>:</span> <span class=n>w</span>
+</span></span><span class=line><span class=cl><span class=nl>name</span><span class=p>:</span> <span class=n>var4</span> <span class=nl>value</span><span class=p>:</span> <span class=mi>4</span> <span class=nl>mood</span><span class=p>:</span> <span class=n>r</span>
+</span></span><span class=line><span class=cl><span class=nl>name</span><span class=p>:</span> <span class=n>var5</span> <span class=nl>value</span><span class=p>:</span>  <span class=nl>mood</span><span class=p>:</span> <span class=n>w</span>
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>unset</span> <span class=n>var4</span>
+</span></span><span class=line><span class=cl><span class=n>environment</span> <span class=n>value</span> <span class=n>var4</span> <span class=n>isn</span><span class=err>&#39;</span><span class=n>t</span> <span class=n>declared</span> <span class=n>or</span> <span class=n>is</span> <span class=n>readonly</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>declare</span> <span class=n>var4</span>
+</span></span><span class=line><span class=cl><span class=n>declare</span> <span class=nl>wrong</span><span class=p>:</span> <span class=o>-</span><span class=mi>14</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=困难和解决方案>困难和解决方案</h2><h3 id=命令运行出现的异步问题>命令运行出现的异步问题</h3><p>在实现一行多命令时，需要确保命令执行顺序与输入顺序保持一致，解决方案是通过<code>fork</code>创建子进程，子进程直接运行左边的命令，</p><p>父进程等待子进程运行完毕再运行右边的命令。</p><h3 id=内核态阻塞的问题>内核态阻塞的问题</h3><p>实现后台任务时，由于<code>read</code>函数的实现是在内核态进行阻塞，无法进行调度，因此解决方案是将阻塞的位置调整在用户态，使其能进行调度。</p><h3 id=方向键的监听>方向键的监听</h3><p>一开始并不了解方向键在系统中的存在形式，查找相关资料后，了解到每个方向键也对应着相应的字符，因此只需要判断输入的字符是否为方向键对应的字符即可</p><h3 id=解析形如-abc的参数的方法>解析形如<code>-abc</code>的参数的方法</h3><p>起初并不了解这种参数的解析，但发现<code>ls</code>命令也有类似的参数，故阅读<code>ls.c</code>文件并查找相关资料后，学习到了这种参数的解析方法</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=n>ARGBEGIN</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=k>default</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>		<span class=nf>usage</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>	<span class=k>case</span> <span class=sc>&#39;d&#39;</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>	<span class=k>case</span> <span class=sc>&#39;F&#39;</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>	<span class=k>case</span> <span class=sc>&#39;l&#39;</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>		<span class=n>flag</span><span class=p>[(</span><span class=n>u_char</span><span class=p>)</span><span class=nf>ARGC</span><span class=p>()]</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>		<span class=k>break</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=n>ARGEND</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=文件打开模式o_append的实现>文件打开模式<code>O_APPEND</code>的实现</h3><p>MOS的文件系统中并没有实现追加打开方式，实现该模式，需要在打开文件时，将文件描述符里存的偏移设置为文件大小</p><h3 id=历史命令的保存>历史命令的保存</h3><p>仅有一个<code>.history</code>文件对存取是不方便的，因此我维护了一个偏移表，进行历史命令的存取。</p></section><footer class=article-footer></footer><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css integrity="sha256-J+iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s=" crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js integrity="sha256-InsNdER1b2xUewP+pKCUJpkhiqwHgqiPXDlIk7GzBu4=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI=" crossorigin=anonymous defer></script><script>window.addEventListener("DOMContentLoaded",()=>{renderMathInElement(document.querySelector(`.article-content`),{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}],ignoredClasses:["gist"]})})</script></article><script src=https://giscus.app/client.js data-repo=Zyh-OvO/blog-by-stack data-repo-id=R_kgDOJ7Kx7Q data-category=Announcements data-category-id=DIC_kwDOJ7Kx7c4CX_Au data-mapping=url data-strict=0 data-reactions-enabled=1 data-emit-metadata=0 data-input-position=top data-theme=light data-lang=en crossorigin=anonymous async></script>
+<script>function setGiscusTheme(e){let t=document.querySelector("iframe.giscus-frame");t&&t.contentWindow.postMessage({giscus:{setConfig:{theme:e}}},"https://giscus.app")}(function(){addEventListener("message",t=>{if(event.origin!=="https://giscus.app")return;e()}),window.addEventListener("onColorSchemeChange",e);function e(){setGiscusTheme(document.documentElement.dataset.scheme==="light"?"light":"dark_dimmed")}})()</script><footer class=site-footer><section class=copyright>&copy; 2023 Zyh's Blog</section><div class=busuanzi-footer><span id=busuanzi_container_site_uv>Total Visitors: <span id=busuanzi_value_site_uv></span></span></div></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/blog-by-stack/ts/main.js defer></script>
+<script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

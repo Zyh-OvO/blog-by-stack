@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hugo on Zyh's Blog</title><link>https://zyh-ovo.github.io/blog-by-stack/tags/hugo/</link><description>Recent content in Hugo on Zyh's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 19 Jul 2023 16:36:28 +0800</lastBuildDate><atom:link href="https://zyh-ovo.github.io/blog-by-stack/tags/hugo/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo网站引入访问计数插件不蒜子(busuanzi)</title><link>https://zyh-ovo.github.io/blog-by-stack/p/hugo%E7%BD%91%E7%AB%99%E5%BC%95%E5%85%A5%E8%AE%BF%E9%97%AE%E8%AE%A1%E6%95%B0%E6%8F%92%E4%BB%B6%E4%B8%8D%E8%92%9C%E5%AD%90busuanzi/</link><pubDate>Wed, 19 Jul 2023 16:36:28 +0800</pubDate><guid>https://zyh-ovo.github.io/blog-by-stack/p/hugo%E7%BD%91%E7%AB%99%E5%BC%95%E5%85%A5%E8%AE%BF%E9%97%AE%E8%AE%A1%E6%95%B0%E6%8F%92%E4%BB%B6%E4%B8%8D%E8%92%9C%E5%AD%90busuanzi/</guid><description>&lt;h2 id="busuanzihttpbusuanziibruceinfo">&lt;a class="link" href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener"
+>busuanzi&lt;/a>&lt;/h2>
+&lt;p>大多数博客都是静态网站，静态既是优点也是缺点，优点包括但不限于快速的加载速度、较低的服务器要求以及更高的安全性等等；但同时由于是静态的，一些动态内容（交互等等）需要借助第三方平台，不蒜子（busuanzi）是由Bruce 开发的一款轻量级的网页计数器。使用非常简单：&lt;strong>两行代码可搞定&lt;/strong>， 一行脚本，一行标签。&lt;/p>
+&lt;h3 id="统计指标">统计指标&lt;/h3>
+&lt;p>busuanzi有两种统计指标，&lt;strong>PV&lt;/strong>和&lt;strong>UV&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>PV&lt;/strong> 即 &lt;strong>Page View&lt;/strong>，&lt;strong>网站浏览量&lt;/strong>指页面的浏览次数，用以衡量网站用户访问的网页数量。用户每打开一个页面便记录 1 次 PV，多次打开同一页面会累计浏览量。&lt;/li>
+&lt;li>&lt;strong>UV&lt;/strong> 即 &lt;strong>Unique Visitor&lt;/strong>，&lt;strong>独立访客数&lt;/strong>指 1 天内访问某站点的人数，以 cookie 为依据。1 天内同一访客的多次访问只计为 1 个访客。&lt;/li>
+&lt;/ul>
+&lt;h3 id="简单使用示例">简单使用示例&lt;/h3>
+&lt;ol>
+&lt;li>先引入&lt;code>busuanzi&lt;/code>的&lt;code>js&lt;/code>代码&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">script&lt;/span> &lt;span class="na">async&lt;/span> &lt;span class="na">src&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol start="2">
+&lt;li>按需使用Html标签代码，注意要使用对应的&lt;code>id&lt;/code>，例如网站总访问量要使用&lt;code>busuanzi_container_site_pv&lt;/code>和&lt;code>busuanzi_value_site_pv&lt;/code>。下面是一个例子：&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">span&lt;/span> &lt;span class="na">id&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;busuanzi_container_site_pv&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>本站总访问量&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">span&lt;/span> &lt;span class="na">id&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;busuanzi_value_site_pv&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">span&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>次&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">span&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">span&lt;/span> &lt;span class="na">id&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;busuanzi_container_site_uv&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>本站总访客数&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">span&lt;/span> &lt;span class="na">id&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;busuanzi_value_site_uv&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">span&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>人&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">span&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">span&lt;/span> &lt;span class="na">id&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;busuanzi_container_page_pv&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>本文总阅读量&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">span&lt;/span> &lt;span class="na">id&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;busuanzi_value_page_pv&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">span&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>次&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">span&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="hugo引入">Hugo引入&lt;/h2>
+&lt;p>本站采用的是&lt;a class="link" href="https://stack.jimmycai.com/" target="_blank" rel="noopener"
+>Stack主题&lt;/a>，引入&lt;code>busuanzi&lt;/code>时需要修改对应的模板页和配置文件，Stack主题的模板页结构如下图：&lt;/p>
+&lt;p>&lt;img src="https://zyh-ovo.github.io/blog-by-stack/blog-by-stack/p/hugo%E7%BD%91%E7%AB%99%E5%BC%95%E5%85%A5%E8%AE%BF%E9%97%AE%E8%AE%A1%E6%95%B0%E6%8F%92%E4%BB%B6%E4%B8%8D%E8%92%9C%E5%AD%90busuanzi/layouts.jpg"
+width="346"
+height="692"
+srcset="https://zyh-ovo.github.io/blog-by-stack/blog-by-stack/p/hugo%E7%BD%91%E7%AB%99%E5%BC%95%E5%85%A5%E8%AE%BF%E9%97%AE%E8%AE%A1%E6%95%B0%E6%8F%92%E4%BB%B6%E4%B8%8D%E8%92%9C%E5%AD%90busuanzi/layouts_hu60937093285574545bc30a9a602f86cb_44299_480x0_resize_q75_box.jpg 480w, https://zyh-ovo.github.io/blog-by-stack/blog-by-stack/p/hugo%E7%BD%91%E7%AB%99%E5%BC%95%E5%85%A5%E8%AE%BF%E9%97%AE%E8%AE%A1%E6%95%B0%E6%8F%92%E4%BB%B6%E4%B8%8D%E8%92%9C%E5%AD%90busuanzi/layouts_hu60937093285574545bc30a9a602f86cb_44299_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="50"
+data-flex-basis="120px"
+>&lt;/p>
+&lt;p>修改的&lt;code>html&lt;/code>文件有：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;code>layouts\partials\article\components\content.html&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>layouts\partials\footer\footer.html&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>layouts\partials\head\head.html&lt;/code>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="headhtml">head.html&lt;/h3>
+&lt;p>在&lt;code>head.html&lt;/code>中引入&lt;code>busuanzi&lt;/code>的js代码&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl">&lt;span class="c">&amp;lt;!-- busuanzi --&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{{- if .Site.Params.busuanzi.enable -}}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">script&lt;/span> &lt;span class="na">async&lt;/span> &lt;span class="na">src&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">script&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">meta&lt;/span> &lt;span class="na">name&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;referrer&amp;#34;&lt;/span> &lt;span class="na">content&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;no-referrer-when-downgrade&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{{- end -}}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="footerhtml">footer.html&lt;/h3>
+&lt;p>&lt;code>footer.html&lt;/code>定义了整个网站的底部结构，在其中添加总访客数&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl">{{ if .Site.Params.busuanzi.enable }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">div&lt;/span> &lt;span class="na">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;busuanzi-footer&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">span&lt;/span> &lt;span class="na">id&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;busuanzi_container_site_uv&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Total Visitors: &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">span&lt;/span> &lt;span class="na">id&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;busuanzi_value_site_uv&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">span&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">span&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">div&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{ end }}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="contenthtml">content.html&lt;/h3>
+&lt;p>&lt;code>content.html&lt;/code>是所有文章内容的模板页，在其中添加文章的总浏览量，并且还可以使用自己想要的样式（我把颜色设成了浅蓝）&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl">{{ if .Site.Params.busuanzi.enable }}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">span&lt;/span> &lt;span class="na">id&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;busuanzi_container_page_pv&amp;#34;&lt;/span> &lt;span class="na">style&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;color: rgb(60, 106, 255)&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>Total Views: &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">span&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="na">id&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;busuanzi_value_page_pv&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">span&lt;/span>&lt;span class="p">&amp;gt;&amp;lt;/&lt;/span>&lt;span class="nt">span&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{{ end }}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="配置文件">配置文件&lt;/h3>
+&lt;p>最后要修改配置文件&lt;code>params.toml&lt;/code>，文件位置如下图所示：&lt;/p>
+&lt;p>&lt;img src="https://zyh-ovo.github.io/blog-by-stack/blog-by-stack/p/hugo%E7%BD%91%E7%AB%99%E5%BC%95%E5%85%A5%E8%AE%BF%E9%97%AE%E8%AE%A1%E6%95%B0%E6%8F%92%E4%BB%B6%E4%B8%8D%E8%92%9C%E5%AD%90busuanzi/config.jpg"
+width="272"
+height="277"
+srcset="https://zyh-ovo.github.io/blog-by-stack/blog-by-stack/p/hugo%E7%BD%91%E7%AB%99%E5%BC%95%E5%85%A5%E8%AE%BF%E9%97%AE%E8%AE%A1%E6%95%B0%E6%8F%92%E4%BB%B6%E4%B8%8D%E8%92%9C%E5%AD%90busuanzi/config_hu9d6136c81d121df477a78e6eebdca23e_18191_480x0_resize_q75_box.jpg 480w, https://zyh-ovo.github.io/blog-by-stack/blog-by-stack/p/hugo%E7%BD%91%E7%AB%99%E5%BC%95%E5%85%A5%E8%AE%BF%E9%97%AE%E8%AE%A1%E6%95%B0%E6%8F%92%E4%BB%B6%E4%B8%8D%E8%92%9C%E5%AD%90busuanzi/config_hu9d6136c81d121df477a78e6eebdca23e_18191_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="98"
+data-flex-basis="235px"
+>&lt;/p>
+&lt;p>添加如下代码：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-toml" data-lang="toml">&lt;span class="line">&lt;span class="cl">&lt;span class="p">[&lt;/span>&lt;span class="nx">busuanzi&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nx">enable&lt;/span> &lt;span class="p">=&lt;/span> &lt;span class="kc">true&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如果不想使用计数功能，将&lt;code>enable&lt;/code>设为&lt;code>false&lt;/code>即可&lt;/p>
+&lt;h2 id="最终效果">最终效果&lt;/h2>
+&lt;p>文章浏览量&lt;/p>
+&lt;p>&lt;img src="https://zyh-ovo.github.io/blog-by-stack/blog-by-stack/p/hugo%E7%BD%91%E7%AB%99%E5%BC%95%E5%85%A5%E8%AE%BF%E9%97%AE%E8%AE%A1%E6%95%B0%E6%8F%92%E4%BB%B6%E4%B8%8D%E8%92%9C%E5%AD%90busuanzi/page.jpg"
+width="656"
+height="222"
+srcset="https://zyh-ovo.github.io/blog-by-stack/blog-by-stack/p/hugo%E7%BD%91%E7%AB%99%E5%BC%95%E5%85%A5%E8%AE%BF%E9%97%AE%E8%AE%A1%E6%95%B0%E6%8F%92%E4%BB%B6%E4%B8%8D%E8%92%9C%E5%AD%90busuanzi/page_hubccf79a6abe656960c9747f3f1bac6cd_27631_480x0_resize_q75_box.jpg 480w, https://zyh-ovo.github.io/blog-by-stack/blog-by-stack/p/hugo%E7%BD%91%E7%AB%99%E5%BC%95%E5%85%A5%E8%AE%BF%E9%97%AE%E8%AE%A1%E6%95%B0%E6%8F%92%E4%BB%B6%E4%B8%8D%E8%92%9C%E5%AD%90busuanzi/page_hubccf79a6abe656960c9747f3f1bac6cd_27631_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="295"
+data-flex-basis="709px"
+>&lt;/p>
+&lt;p>网站访客数&lt;/p>
+&lt;p>&lt;img src="https://zyh-ovo.github.io/blog-by-stack/blog-by-stack/p/hugo%E7%BD%91%E7%AB%99%E5%BC%95%E5%85%A5%E8%AE%BF%E9%97%AE%E8%AE%A1%E6%95%B0%E6%8F%92%E4%BB%B6%E4%B8%8D%E8%92%9C%E5%AD%90busuanzi/site.jpg"
+width="311"
+height="152"
+srcset="https://zyh-ovo.github.io/blog-by-stack/blog-by-stack/p/hugo%E7%BD%91%E7%AB%99%E5%BC%95%E5%85%A5%E8%AE%BF%E9%97%AE%E8%AE%A1%E6%95%B0%E6%8F%92%E4%BB%B6%E4%B8%8D%E8%92%9C%E5%AD%90busuanzi/site_hu0c033868f16428c1fcc8087609aeefa7_5837_480x0_resize_q75_box.jpg 480w, https://zyh-ovo.github.io/blog-by-stack/blog-by-stack/p/hugo%E7%BD%91%E7%AB%99%E5%BC%95%E5%85%A5%E8%AE%BF%E9%97%AE%E8%AE%A1%E6%95%B0%E6%8F%92%E4%BB%B6%E4%B8%8D%E8%92%9C%E5%AD%90busuanzi/site_hu0c033868f16428c1fcc8087609aeefa7_5837_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="204"
+data-flex-basis="491px"
+>&lt;/p></description></item><item><title>Math Typesetting</title><link>https://zyh-ovo.github.io/blog-by-stack/p/math-typesetting/</link><pubDate>Tue, 18 Jul 2023 22:03:17 +0800</pubDate><guid>https://zyh-ovo.github.io/blog-by-stack/p/math-typesetting/</guid><description>&lt;p>Mathematical notation in a Hugo project can be enabled by using third party JavaScript libraries.&lt;/p>
+&lt;p>In this example we will be using &lt;a class="link" href="https://katex.org/" target="_blank" rel="noopener"
+>KaTeX&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>Create a partial under &lt;code>/layouts/partials/math.html&lt;/code>&lt;/li>
+&lt;li>Within this partial reference the &lt;a class="link" href="https://katex.org/docs/autorender.html" target="_blank" rel="noopener"
+>Auto-render Extension&lt;/a> or host these scripts locally.&lt;/li>
+&lt;li>Include the partial in your templates like so:&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="o">{{&lt;/span> &lt;span class="k">if&lt;/span> or .Params.math .Site.Params.math &lt;span class="o">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">{{&lt;/span> partial &lt;span class="s2">&amp;#34;math.html&amp;#34;&lt;/span> . &lt;span class="o">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="o">{{&lt;/span> end &lt;span class="o">}}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ul>
+&lt;li>To enable KaTex globally set the parameter &lt;code>math&lt;/code> to &lt;code>true&lt;/code> in a project&amp;rsquo;s configuration&lt;/li>
+&lt;li>To enable KaTex on a per page basis include the parameter &lt;code>math: true&lt;/code> in content files&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Note:&lt;/strong> Use the online reference of &lt;a class="link" href="https://katex.org/docs/supported.html" target="_blank" rel="noopener"
+>Supported TeX Functions&lt;/a>&lt;/p>
+&lt;h3 id="examples">Examples&lt;/h3>
+&lt;p>Inline math: $(\varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887…)$&lt;/p>
+&lt;p>Block math:
+$$
+\varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } }
+$$&lt;/p></description></item><item><title>Rich Content</title><link>https://zyh-ovo.github.io/blog-by-stack/p/rich-content/</link><pubDate>Tue, 18 Jul 2023 21:55:17 +0800</pubDate><guid>https://zyh-ovo.github.io/blog-by-stack/p/rich-content/</guid><description>&lt;p>Hugo ships with several &lt;a class="link" href="https://gohugo.io/content-management/shortcodes/#use-hugo-s-built-in-shortcodes" target="_blank" rel="noopener"
+>Built-in Shortcodes&lt;/a> for rich content, along with a &lt;a class="link" href="https://gohugo.io/about/hugo-and-gdpr/" target="_blank" rel="noopener"
+>Privacy Config&lt;/a> and a set of Simple Shortcodes that enable static and no-JS versions of various social media embeds.&lt;/p>
+&lt;hr>
+&lt;h2 id="youtube-privacy-enhanced-shortcode">YouTube Privacy Enhanced Shortcode&lt;/h2>
+&lt;div class="video-wrapper">
+&lt;iframe loading="lazy"
+src="https://www.youtube.com/embed/ZJthWmvUzzc"
+allowfullscreen
+title="YouTube Video"
+>
+&lt;/iframe>
+&lt;/div>
+&lt;!-- raw HTML omitted -->
+&lt;hr>
+&lt;h2 id="bilibilibi-shortcode">bilibilibi Shortcode&lt;/h2>
+&lt;div class="video-wrapper">
+&lt;iframe src="https://player.bilibili.com/player.html?as_wide=1&amp;amp;high_quality=1&amp;amp;page=1&amp;aid=498363026"
+scrolling="no"
+frameborder="no"
+framespacing="0"
+allowfullscreen="true"
+>
+&lt;/iframe>
+&lt;/div>
+&lt;h2 id="gist-shortcode">Gist Shortcode&lt;/h2>
+&lt;script type="application/javascript" src="https://gist.github.com/spf13/7896402.js">&lt;/script>
+&lt;h2 id="gitlab-snippets-shortcode">Gitlab Snippets Shortcode&lt;/h2>
+&lt;script
+type="application/javascript"
+src="https://gitlab.com/-/snippets/2349278.js"
+>&lt;/script>
+&lt;h2 id="quote-shortcode">Quote Shortcode&lt;/h2>
+&lt;p>Stack adds a &lt;code>quote&lt;/code> shortcode. For example:&lt;/p>
+&lt;blockquote>
+&lt;p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p>&lt;span class="cite">&lt;span>― &lt;/span>&lt;span>A famous person, &lt;/span>&lt;a href="https://en.wikipedia.org/wiki/Book">&lt;cite>The book they wrote&lt;/cite>&lt;/a>&lt;/span>&lt;/blockquote>
+&lt;blockquote>
+&lt;p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p>&lt;span class="cite">&lt;span>― &lt;/span>&lt;a href="https://en.wikipedia.org/wiki/Book">&lt;cite>Anonymous book&lt;/cite>&lt;/a>&lt;/span>&lt;/blockquote>
+&lt;blockquote>
+&lt;p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p>&lt;span class="cite">&lt;span>― &lt;/span>&lt;cite>Some book&lt;/cite>&lt;/span>&lt;/blockquote>
+&lt;blockquote>
+&lt;p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p>&lt;span class="cite">&lt;span>― &lt;/span>&lt;span>Somebody&lt;/span>&lt;cite>&lt;/cite>&lt;/span>&lt;/blockquote></description></item><item><title>Hugo Theme Stack Starter Template</title><link>https://zyh-ovo.github.io/blog-by-stack/p/hugo-theme-stack-starter-template/</link><pubDate>Tue, 18 Jul 2023 21:39:44 +0800</pubDate><guid>https://zyh-ovo.github.io/blog-by-stack/p/hugo-theme-stack-starter-template/</guid><description>&lt;h2 id="hugo-theme-stack-starter-template">Hugo Theme Stack Starter Template&lt;/h2>
+&lt;p>This is a quick start template for &lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener"
+>Hugo theme Stack&lt;/a>. It uses &lt;a class="link" href="https://gohugo.io/hugo-modules/" target="_blank" rel="noopener"
+>Hugo modules&lt;/a> feature to load the theme.&lt;/p>
+&lt;p>It comes with a basic theme structure and configuration. GitHub action has been set up to deploy the theme to a public GitHub page automatically. Also, there&amp;rsquo;s a cron job to update the theme automatically everyday.&lt;/p>
+&lt;p>To get started:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>Click &lt;em>Use this template&lt;/em>, and create your repository on GitHub.
+&lt;img src="https://user-images.githubusercontent.com/5889006/156916624-20b2a784-f3a9-4718-aa5f-ce2a436b241f.png"
+loading="lazy"
+alt="Step 1"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Once the repository is created, create a GitHub codespace asociated with it.
+&lt;img src="https://user-images.githubusercontent.com/5889006/156916672-43b7b6e9-4ffb-4704-b4ba-d5ca40ffcae7.png"
+loading="lazy"
+alt="Create codespace"
+>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>And voila! You&amp;rsquo;re ready to go. The codespace has been configured with the latest version of Hugo extended, just run &lt;code>hugo server&lt;/code> in the terminal and see your new site in action.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Check &lt;code>config&lt;/code> folder for the configuration files. You can edit them to suit your needs. Make sure to update the &lt;code>baseurl&lt;/code> property in &lt;code>config/_default/config.toml&lt;/code> to your site&amp;rsquo;s URL.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Once you&amp;rsquo;re done editing the site, just commit it and push it. GitHub action will deploy the site automatically to GitHub page asociated with the repository.
+&lt;img src="https://user-images.githubusercontent.com/5889006/156916881-90b8bb9b-1925-4e60-9d7a-8026cda729bf.png"
+loading="lazy"
+alt="GitHub action"
+>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;p>In case you don&amp;rsquo;t want to use GitHub codespace, you can also run this template in your local machine. &lt;strong>You need to install Git, Go and Hugo extended locally.&lt;/strong>&lt;/p>
+&lt;h3 id="update-theme-manually">Update theme manually&lt;/h3>
+&lt;p>Run:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">hugo mod get -u github.com/CaiJimmy/hugo-theme-stack/v3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">hugo mod tidy
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;blockquote>
+&lt;p>This starter template has been configured with &lt;code>v3&lt;/code> version of theme. Due to the limitation of Go module, once the &lt;code>v4&lt;/code> or up version of theme is released, you need to update the theme manually. (Modifying &lt;code>config/module.toml&lt;/code> file)&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="deploy-to-another-static-page-hostings">Deploy to another static page hostings&lt;/h3>
+&lt;p>If you want to build this site using another static page hosting, you need to make sure they have Go installed in the machine.&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;p>You need to overwrite build command to install manually Go:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">amazon-linux-extras install golang1.11 &amp;amp;&amp;amp; hugo --gc --minify
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://user-images.githubusercontent.com/5889006/156917172-01e4d418-3469-4ffb-97e4-a905d28b8424.png"
+loading="lazy"
+>&lt;/p>
+&lt;p>Make sure also to specify Hugo version in the environment variable &lt;code>HUGO_VERSION&lt;/code> (Use the latest version of Hugo extended):&lt;/p>
+&lt;p>&lt;img src="https://user-images.githubusercontent.com/5889006/156917212-afb7c70d-ab85-480f-8288-b15781a462c0.png"
+loading="lazy"
+alt="Environment variable"
+>&lt;/p>
+&lt;!-- raw HTML omitted --></description></item></channel></rss>
