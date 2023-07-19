@@ -148,3 +148,6 @@ clientSecret = ""
 [comments.cusdis]
 host = ""
 id = ""
+
+[busuanzi]
+enable = true
